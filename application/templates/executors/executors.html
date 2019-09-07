@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h2>Huoltomiehet</h2>
+  <ul>
+    {% for item in executors %}
+    <li>{{ item.name }}  {{ item.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

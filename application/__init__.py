@@ -10,5 +10,6 @@ db = SQLAlchemy(app)
 
 from application import views
 from application.models import action, executor, location, target
+from application.controllers import executor, action, location, target
 
 db.create_all()
