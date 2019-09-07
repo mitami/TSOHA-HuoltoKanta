@@ -9,6 +9,10 @@ Polku: `/executors`
 
 `SELECT * FROM Huoltomiehet` 
 
+#### Yksittäisen työntekijän lisäys
+Polku: `/executors/new`
+
+`INSERT INTO Huoltomiehet (name, title) VALUES ('nimi', 'titteli')`
 
 #### Yksittäinen työntekijä
 Polku: `executor/id`
