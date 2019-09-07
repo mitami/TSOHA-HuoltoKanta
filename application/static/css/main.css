@@ -1,0 +1,14 @@
+.navbar {
+  top: 0;
+  background-color: #6fcf00;
+  height: 10%;
+  display: flex;
+}
+
+.navbar-links {
+  list-style-type: none;
+}
+
+body {
+  margin: 0;
+}
