@@ -2,9 +2,12 @@
 
 {% block body %}
   <h2>Huoltomiehet</h2>
+  <a href="/executors/new">Lisää uusi</a>
   <ul>
     {% for item in executors %}
-    <li>{{ item.name }}  {{ item.title }}</li>
+    <li>
+      <a href="/executor/{{ item.id }}">{{ item.name }}  {{ item.title }}</a>
+    </li>
     {% endfor %}
   </ul>
 {% endblock %}
