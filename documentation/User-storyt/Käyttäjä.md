@@ -23,3 +23,8 @@ Polku: `/executor/id`
 Polku: `/executor/id/edit`
 
 `UPDATE Huoltomiehet SET name = 'uusi nimi', title = 'uusi title' WHERE id = X`
+
+#### Työntekijän poistaminen
+Polku: `/executor/id/delete`
+
+`DELETE FROM Huoltomiehet WHERE id = X`
