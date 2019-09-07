@@ -5,7 +5,7 @@
 ------------------------------------------------
 
 #### Listaus kaikista käyttäjistä
-
+`SELECT * FROM Huoltomiehet` 
 
 
 #### Yksittäinen käyttäjä
