@@ -4,12 +4,15 @@
 
 ------------------------------------------------
 
-#### Listaus kaikista käyttäjistä
+#### Listaus kaikista työntekijöistä/toimeenpanijoista(executor)
+Polku: `/executors`
 `SELECT * FROM Huoltomiehet` 
 
 
 #### Yksittäinen käyttäjä
+Polku: `executor/id`
 `SELECT * FROM Huoltomiehet WHERE id = X`
 
 #### Käyttäjän tietojen muokkaus
+Polku: `executor/id/edit`
 `UPDATE Huoltomiehet SET name = 'uusi nimi', title = 'uusi title' WHERE id = X`
