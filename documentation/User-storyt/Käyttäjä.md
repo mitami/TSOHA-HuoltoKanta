@@ -9,6 +9,7 @@
 
 
 #### Yksittäinen käyttäjä
-
+`SELECT * FROM Huoltomiehet WHERE id = X`
 
 #### Käyttäjän tietojen muokkaus
+`UPDATE Huoltomiehet SET name = 'uusi nimi', title = 'uusi title' WHERE id = X`
