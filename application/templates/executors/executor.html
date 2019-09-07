@@ -4,6 +4,7 @@
   <div>
     <h3>{{ executor.name }}</h3>
     <p>{{ executor.title }}</p>
-    <a href="/executors/{{ executor.id }}/edit">Muokkaa</a>
+    <a href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa</a>
+    <a href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista</a>
   </div>
 {% endblock %}

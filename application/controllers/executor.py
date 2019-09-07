@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, redirect
 from application import app, db
 from application.models.executor import Executor
 
@@ -13,7 +13,7 @@ def executors_get_all():
 def executors_new():
     return render_template("executors/new.html")
 
-@app.route("/executors/<id>/edit")
+@app.route("/executor/<id>/edit")
 def executors_edit(id):
     item = Executor.query.get(id)
     db.session().commit()
@@ -36,7 +36,7 @@ def executors_add_one():
 
     return render_template("executors/executor.html", executor = new)
 
-@app.route("/executor/<id>", methods=["POST"])
+@app.route("/executor/<id>/update", methods=["POST"])
 def executors_modify_one(id):
     item = Executor.query.get(id)
     data = request.form
@@ -50,6 +50,9 @@ def executors_modify_one(id):
 
     return render_template("executors/executor.html", executor = item)
 
-@app.route("/executor/<id>", methods=["DELETE"])
+@app.route("/executor/<id>/delete")
 def executors_delete_one(id):
-    return render_template("executors/executors.html")
+    Executor.query.filter_by(id=id).delete()
+    db.session().commit()
+
+    return redirect(url_for("executors_get_all"))
