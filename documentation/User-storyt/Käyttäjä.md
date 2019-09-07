@@ -1,6 +1,6 @@
 # Käyttäjät
 
-(Admin -)käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä käyttäjästä, sekä mahdollisuuden muokata yksittäisten käyttäjien nimeä ja titteliä tai poistaa käyttäjiä järjestelmästä.
+(Admin -)käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä työntekijästä, sekä mahdollisuuden muokata yksittäisten työntekijän nimeä ja titteliä tai poistaa työntekijöitä järjestelmästä.
 
 ------------------------------------------------
 
