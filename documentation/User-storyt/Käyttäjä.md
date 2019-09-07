@@ -12,7 +12,7 @@ Polku: `/executors`
 #### Yksittäisen työntekijän lisäys
 Polku: `/executors/new`
 
-`INSERT INTO Huoltomiehet (name, title) VALUES ('nimi', 'titteli')`
+`INSERT INTO Huoltomiehet VALUES ('nimi', 'titteli')`
 
 #### Yksittäinen työntekijä
 Polku: `executor/id`
