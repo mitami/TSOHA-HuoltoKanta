@@ -9,5 +9,6 @@ app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 from application import views
+from application.models import action, executor, location, target
 
 db.create_all()
