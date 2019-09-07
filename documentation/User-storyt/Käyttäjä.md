@@ -15,11 +15,11 @@ Polku: `/executors/new`
 `INSERT INTO Huoltomiehet VALUES ('nimi', 'titteli')`
 
 #### Yksittäinen työntekijä
-Polku: `executor/id`
+Polku: `/executor/id`
 
 `SELECT * FROM Huoltomiehet WHERE id = X`
 
 #### Työntekijän tietojen muokkaus
-Polku: `executor/id/edit`
+Polku: `/executor/id/edit`
 
 `UPDATE Huoltomiehet SET name = 'uusi nimi', title = 'uusi title' WHERE id = X`
