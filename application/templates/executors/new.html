@@ -2,19 +2,43 @@
 
 {% block body %}
 <h2>Lisää uusi työntekijä</h2>
+<div class="registration-form-container">
   <form method="POST", action="{{ url_for('executors_add_one') }}">
-    <input
-      name="name"
-      required
-      maxlength=20
-      autofocus
-    >
+    <div class="form-field-item">
+      <p>Nimi:</p>
+      <input
+        name="name"
+        required
+        maxlength=20
+        autofocus
+      >
+    </div>
+    <div class="form-field-item">
+      <p>Titteli:</p>
+      <input
+        name="title"
+        required
+        maxlength=30
+      >
+    </div>
+    <div class="form-field-item">
+      <p>Salasana:</p>
+      <input
+        name="pword"
+        required
+        maxlength="20"
+      >
+    </div>
+    <div class="form-field-item">
+      <p>Salasana uudelleen:</p>
+      <input
+        name="pwordagain"
+        required
+        maxlength="20"
+      >
+    </div>
     <br>
-    <input
-      name="title"
-      required
-      maxlength=30
-    >
     <button>Submit</button>
   </form>
+</div>
 {% endblock %}

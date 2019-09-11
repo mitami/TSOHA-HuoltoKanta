@@ -12,3 +12,25 @@
 body {
   margin: 0;
 }
+
+.registration-form-container {
+  margin-left: 2%;
+  max-width: 250px;
+}
+
+.form-field-item {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.form-field-item p {
+  margin-top: 0;
+}
+
+.form-field-item:nth-child(even) {
+  background-color: #d1d1d1;
+}
+
+.form-field-item:nth-child(odd) {
+  background-color: #e4e4e4;
+}
