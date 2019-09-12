@@ -29,7 +29,9 @@ def executors_get_one(id):
 
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():
-    new = Executor(request.form.get("name"), request.form.get("title"))
+    pword = request.form.get("pword")
+    # hash password here
+    new = Executor(request.form.get("name"), request.form.get("title"), pword)
 
     db.session().add(new)
     db.session().commit()
