@@ -2,7 +2,7 @@
 
 {% block body %}
 <h2>Lisää uusi työntekijä</h2>
-<div class="registration-form-container">
+<div class="form-container">
   <form method="POST", action="{{ url_for('executors_add_one') }}">
     <div class="form-field-item">
       <p>Nimi:</p>
@@ -29,6 +29,7 @@
         required
         maxlength="20"
         minlength="4"
+        type="password"
       >
     </div>
     <div class="form-field-item">
@@ -38,6 +39,7 @@
         required
         maxlength="20"
         minlength="4"
+        type="password"
       >
     </div>
     <br>

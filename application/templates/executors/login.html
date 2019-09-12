@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <div>
+    <h2>Kirjaudu sisään</h2>
+    <div class="form-container">
+      <form method="POST", action="{{ url_for('user_login') }}">
+        <div class="form-field-item">
+          <p>Nimi: </p>
+          <input
+            name="name"
+            required
+            autofocus
+          >
+        </div>
+        <div class="form-field-item">
+          <p>Salasana: </p>
+          <input
+            name="password"
+            required
+            type="password"
+          >
+        </div>
+        <p>{{ msg }}</p>
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -2,19 +2,26 @@
 
 {% block body %}
 <h2>Muokkaa {{ executor.name }} -tietoja</h2>
+<div class="form-container">
   <form method="POST", action="{{ url_for('executors_modify_one', id=executor.id) }}">
-    <input
-      name="name"
-      required
-      maxlength=20
-      autofocus
-    >
-    <br>
-    <input
-      name="title"
-      required
-      maxlength=30
-    >
+    <div class="form-field-item">
+      <p>Nimi: </p>
+      <input
+        name="name"
+        required
+        maxlength=20
+        autofocus
+      >
+    </div>
+    <div class="form-field-item">
+      <p>Titteli: </p>
+      <input
+        name="title"
+        required
+        maxlength=30
+      >
+  </div>
     <button>Submit</button>
   </form>
+</div>
 {% endblock %}
