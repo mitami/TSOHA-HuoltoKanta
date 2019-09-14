@@ -1,12 +1,33 @@
 .navbar {
   top: 0;
-  background-color: #6fcf00;
+  background-color: #4f9400;
   height: 10%;
   display: flex;
 }
 
 .navbar-links {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.navbar-links li {
+  float: left;
+  padding: 20px;
+}
+
+.navbar-links li:last-child {
+  float: right;
+}
+
+.navbar-links li:hover {
+  background-color: black;
+}
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
 }
 
 body {
