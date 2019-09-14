@@ -15,9 +15,16 @@
         <li>
           <a href="/executors">Huoltomiehet</a>
         </li>
+        {% if current_user.is_authenticated %}
+        <span>Käyttäjä: {{ current_user.name }}</span>
         <li>
-          <a href="/login">Login</a>
+          <a href="{{ url_for('user_logout') }}">Logout</a>
         </li>
+        {% else %}
+        <li>
+          <a href="{{ url_for('user_login') }}">Login</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
     <div class="content-container">

@@ -10,3 +10,15 @@ class Executor(db.Model):
         self.name = name
         self.title = title
         self.password = pword
+
+    def get_id(self):
+        return self.id
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
