@@ -25,7 +25,5 @@ class Executor(db.Model):
     def is_authenticated(self):
         return True
 
-    def is_admin(self):
-        if self.admin:
-            return admin
-        return False
+    def get_admin(self):
+        return self.admin

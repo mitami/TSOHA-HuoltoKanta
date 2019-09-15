@@ -1,4 +1,5 @@
 from flask import render_template, request, url_for, redirect
+from flask_login import current_user, UserMixin
 from application import app, db
 from application.models.executor import Executor
 
@@ -29,6 +30,18 @@ def executors_get_one(id):
 
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():
+    #Siivoa tämä?
+    if current_user.is_authenticated:
+        if not current_user.get_admin():
+            return render_template("index.html", msg="You need admin privileges for this action!")
+
+    users = db.session.query(Executor).count()
+    if users != 0 and not current_user.is_authenticated:
+        return render_template("index.html", msg="You need admin privileges for this action!")
+
+    print("AMOUNT OF USERS: ")
+    print(users)
+
     pword = request.form.get("pword")
     name = request.form.get("name")
     title = request.form.get("title")
@@ -41,11 +54,13 @@ def executors_add_one():
 
     # hash password here
     admin = False
-    users = Executor.query.all()
-    if not users:
+    new = Executor(name, title, pword, admin)
+    
+
+    if users == 0:
         admin = True
     
-    new = Executor(name, title, pword, admin)
+    new.admin = admin
 
     db.session().add(new)
     db.session().commit()
@@ -55,7 +70,6 @@ def executors_add_one():
 @app.route("/executor/<id>/update", methods=["POST"])
 def executors_modify_one(id):
     item = Executor.query.get(id)
-    #data = request.form
     name = request.form.get("name")
     title = request.form.get("title")
 

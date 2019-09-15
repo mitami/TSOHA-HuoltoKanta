@@ -4,4 +4,9 @@
   <p>
     KoneKanta pääsivu
   </p>
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
+  </div>
+  {% endif %}
 {% endblock %}
