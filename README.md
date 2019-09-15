@@ -14,9 +14,9 @@ test | testi
 
 ------------------------
 
-Tietokantasovellus koneiden huoltokirjanpitoa varten.
+Tietokantasovellus huoltokirjanpitoa varten.
 
-Tietokannan tarkoituksena on pitää kirjaa "Koneille"(tai mille tahansa) jo suoritetuista toimista, tulevista aikataulutetuista toimista, toimenpiteiden suorittajista, sekä koneista itsestään sekä niiden sijainnista.
+Tietokannan tarkoituksena on pitää kirjaa kohteille jo suoritetuista toimista, tulevista aikataulutetuista toimista, toimenpiteiden suorittajista, sekä kohteista itsestään sekä niiden sijainnista.
 
 Järjestelmässä on käyttäjiä, jotka luokitellaan joko Admin -oikeuksien haltijoiksi, tai "normaaleiksi" käyttäjiksi.
 Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutettuun toiminnallisuuteen, eli käytännössä kaikkien taulujen CRUD -oikeudet kaikkien näkyminen lisäksi.
