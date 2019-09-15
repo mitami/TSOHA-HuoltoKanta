@@ -40,7 +40,12 @@ def executors_add_one():
         return render_template("executors/new.html", msg = "Title must be under 30 characters!")
 
     # hash password here
-    new = Executor(name, title, pword)
+    admin = False
+    users = Executor.query.all()
+    if not users:
+        admin = True
+    
+    new = Executor(name, title, pword, admin)
 
     db.session().add(new)
     db.session().commit()
