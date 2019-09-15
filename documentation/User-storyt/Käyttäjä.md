@@ -1,10 +1,13 @@
 # Käyttäjät
 
-(Admin -)käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä työntekijästä, sekä mahdollisuuden muokata yksittäisten työntekijän nimeä ja titteliä tai poistaa työntekijöitä järjestelmästä.
+Admin -käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä työntekijästä, sekä mahdollisuuden muokata yksittäisten työntekijän nimeä ja titteliä ja lisätä sekä poistaa työntekijöitä järjestelmästä.
+
+Käyttäjänä haluan pystyä vaihtamaan salasanani sekä tunnukseni
+
 
 ------------------------------------------------
 
-#### Listaus kaikista työntekijöistä/toimeenpanijoista(executor)
+#### Listaus kaikista käyttäjistä/työntekijöistä/toimeenpanijoista(executor)
 Polku: `/executors`
 
 `SELECT * FROM Huoltomiehet` 
@@ -20,7 +23,7 @@ Polku: `/executor/id`
 `SELECT * FROM Huoltomiehet WHERE id = X`
 
 #### Työntekijän tietojen muokkaus
-Polku: `/executor/id/edit`
+Polku: `/executor/id/update`
 
 `UPDATE Huoltomiehet SET name = 'uusi nimi', title = 'uusi title' WHERE id = X`
 
