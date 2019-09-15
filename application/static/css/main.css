@@ -1,3 +1,18 @@
+.error-message {
+  color: red;
+  font-weight: 900;
+  height: 5%;
+  background-color: #d1d1d1;
+  width: max-content;
+  padding: 5px;
+  margin-bottom: 1%;
+  box-shadow: 5px 5px 5px rgb(65, 65, 65);
+}
+
+.error-message p {
+  margin: 0;
+}
+
 .navbar {
   top: 0;
   background-color: #4f9400;
@@ -59,3 +74,4 @@ body {
 .form-field-item:nth-child(odd) {
   background-color: #e4e4e4;
 }
+

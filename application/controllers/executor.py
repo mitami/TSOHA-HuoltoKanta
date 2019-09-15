@@ -30,8 +30,17 @@ def executors_get_one(id):
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():
     pword = request.form.get("pword")
+    name = request.form.get("name")
+    title = request.form.get("title")
+    if len(pword) < 4 or len(pword) > 20:
+        return render_template("executors/new.html", msg = "Password must be 4-20 characters!")
+    if len(name) < 2 or len(name) > 20:
+        return render_template("executors/new.html", msg = "Username must be 2-20 characters!")
+    if len(title) > 30:
+        return render_template("executors/new.html", msg = "Title must be under 30 characters!")
+
     # hash password here
-    new = Executor(request.form.get("name"), request.form.get("title"), pword)
+    new = Executor(name, title, pword)
 
     db.session().add(new)
     db.session().commit()
