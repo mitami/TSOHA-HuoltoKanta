@@ -50,12 +50,18 @@ def executors_add_one():
 @app.route("/executor/<id>/update", methods=["POST"])
 def executors_modify_one(id):
     item = Executor.query.get(id)
-    data = request.form
+    #data = request.form
+    name = request.form.get("name")
+    title = request.form.get("title")
 
-    if data.get('name'):
-        item.name = data.get('name')
-    if data.get('title'):
-        item.title = data.get('title')
+    if len(name) < 2 or len(name) > 20:
+        return render_template("executors/edit.html", executor=item, msg = "Username must be 2-20 characters!")
+    if len(title) > 30:
+        return render_template("executors/edit.html", executor=item, msg = "Title must under 30 characters!")
+
+    item.name = name
+    if title:
+        item.title = title
     
     db.session().commit()
 
