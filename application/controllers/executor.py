@@ -33,11 +33,11 @@ def executors_add_one():
     #Siivoa tämä?
     if current_user.is_authenticated:
         if not current_user.get_admin():
-            return render_template("index.html", msg="You need admin privileges for this action!")
+            return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
 
     users = db.session.query(Executor).count()
     if users != 0 and not current_user.is_authenticated:
-        return render_template("index.html", msg="You need admin privileges for this action!")
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
 
     print("AMOUNT OF USERS: ")
     print(users)
@@ -46,11 +46,11 @@ def executors_add_one():
     name = request.form.get("name")
     title = request.form.get("title")
     if len(pword) < 4 or len(pword) > 20:
-        return render_template("executors/new.html", msg = "Password must be 4-20 characters!")
+        return render_template("executors/new.html", msg = "Salasanan pituus oltava 4-20 merkkiä!")
     if len(name) < 2 or len(name) > 20:
-        return render_template("executors/new.html", msg = "Username must be 2-20 characters!")
+        return render_template("executors/new.html", msg = "Käyttäjänimen pituus oltava 2-20 merkkiä!")
     if len(title) > 30:
-        return render_template("executors/new.html", msg = "Title must be under 30 characters!")
+        return render_template("executors/new.html", msg = "Tittelin maksimipituus on 30 merkkiä!")
 
     # hash password here
     admin = False
@@ -74,9 +74,9 @@ def executors_modify_one(id):
     title = request.form.get("title")
 
     if len(name) < 2 or len(name) > 20:
-        return render_template("executors/edit.html", executor=item, msg = "Username must be 2-20 characters!")
+        return render_template("executors/edit.html", executor=item, msg = "Käyttäjänimen pituus oltava 2-20 merkkiä!")
     if len(title) > 30:
-        return render_template("executors/edit.html", executor=item, msg = "Title must under 30 characters!")
+        return render_template("executors/edit.html", executor=item, msg = "Tittelin maksimipituus on 30 merkkiä!")
 
     item.name = name
     if title:
@@ -88,6 +88,11 @@ def executors_modify_one(id):
 
 @app.route("/executor/<id>/delete")
 def executors_delete_one(id):
+    #ADMIN-käyttäjän poistaminen on estetty toistaiseksi kokonaan
+    user = Executor.query.get(id)
+    if user.admin:
+        db.session.commit()
+        return render_template("index.html", msg="Admin käyttäjien poistaminen ei ole mahdollista!")
     Executor.query.filter_by(id=id).delete()
     db.session().commit()
 
