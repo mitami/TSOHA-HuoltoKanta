@@ -2,7 +2,7 @@
 
 Admin -käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä työntekijästä, sekä mahdollisuuden muokata yksittäisten työntekijän nimeä ja titteliä ja lisätä sekä poistaa työntekijöitä järjestelmästä.
 
-
+Käyttäjänä haluan pystyä vaihtamaan salasanani sekä tunnukseni
 
 
 ------------------------------------------------
