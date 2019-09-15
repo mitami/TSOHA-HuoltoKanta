@@ -4,7 +4,7 @@
 
 ------------------------------------------------
 
-#### Listaus kaikista työntekijöistä/toimeenpanijoista(executor)
+#### Listaus kaikista käyttäjistä/työntekijöistä/toimeenpanijoista(executor)
 Polku: `/executors`
 
 `SELECT * FROM Huoltomiehet` 
