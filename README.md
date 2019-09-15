@@ -4,6 +4,16 @@
 
 ---------------------------
 
+### Heroku -testitunnukset:
+
+tunnus | salasana |
+---- | ----
+admin | test
+test | testi
+
+
+------------------------
+
 Tietokantasovellus koneiden huoltokirjanpitoa varten.
 
 Tietokannan tarkoituksena on pitää kirjaa "Koneille"(tai mille tahansa) jo suoritetuista toimista, tulevista aikataulutetuista toimista, toimenpiteiden suorittajista, sekä koneista itsestään sekä niiden sijainnista.
@@ -18,15 +28,6 @@ Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutet
 
 --------------------------
 
-### Heroku -testitunnukset:
-
-tunnus | salasana |
----- | ----
-admin | test
-test | testi
-
-
-------------------------
 
 ### Linkkejä
 
