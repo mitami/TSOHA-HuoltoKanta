@@ -10,9 +10,16 @@ Tietokannan tarkoituksena on pitää kirjaa "Koneille"(tai mille tahansa) jo suo
 
 --------------------------
 
-### Heroku -tesitunnukset:
+### Heroku -testitunnukset:
 
 tunnus | salasana |
 ---- | ----
 admin | test
 test | testi
+
+
+------------------------
+
+### Linkkejä
+
+[Käyttäjä -storyt](../master/documentation/User-storyt/Käyttäjä.md)
