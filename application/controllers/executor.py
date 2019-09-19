@@ -1,5 +1,5 @@
 from flask import render_template, request, url_for, redirect
-from flask_login import current_user, UserMixin
+from flask_login import current_user
 from application import app, db
 from application.models.executor import Executor
 
