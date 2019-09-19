@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Muokkaa {{ target.name }} -tietoja</h2>
+{% if msg %}
+<div class="error-message">
+  <p>{{ msg }}</p>
+</div>
+{% endif %}
+<div class="form-container">
+  <form method="POST", action="{{ url_for('targets_modify_one', id=target.id) }}">
+    <div class="form-field-item">
+      <p>Nimi: </p>
+      <input
+        name="name"
+        required
+        maxlength=20
+        autofocus
+      >
+    </div>
+    <button>Submit</button>
+  </form>
+</div>
+{% endblock %}
