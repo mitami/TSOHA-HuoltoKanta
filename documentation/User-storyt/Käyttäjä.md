@@ -4,6 +4,14 @@ Admin -käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjat
 
 Käyttäjänä haluan pystyä vaihtamaan salasanani sekä tunnukseni
 
+Käyttäjänä haluan nähdä listauksen kaikista Kohteista, joille toimenpiteitä tehdään/voidaan tehdä
+
+Käyttäjänä haluan nähdä listauksen kaikista toimenpiteistä, jotka on rekisteroity minulle
+Käyttäjänä haluan merkitä oman toimenpiteeni tehdyksi
+Käyttäjänä haluan luoda uusia toimenpiteitä, jotka liittyvät tiettyihin kohteisiin
+
+Käyttäjänä haluan tarkastella yksittäistä kohdetaa, ja nähdä siihen liittyvät tiedot ja toimenpiteet listattuna
+
 
 ------------------------------------------------
 
