@@ -39,7 +39,14 @@ def targets_add_one():
 
     return render_template("targets/target.html", target = new_target)
 
-@app.route("/targets/<id>/update")
+@app.route("/targets/<id>/edit")
+def targets_edit(id):
+    target = Target.query.get(id)
+    db.session().commit()
+
+    return render_template("targets/edit.html", target = target)
+
+@app.route("/targets/<id>/update", methods=["POST"])
 @login_required
 def targets_modify_one(id):
     #Login check

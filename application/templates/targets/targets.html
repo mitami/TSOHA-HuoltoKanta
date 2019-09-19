@@ -2,7 +2,7 @@
 
 {% block body %}
   <h2>Kohteet</h2>
-  <a>Lisää uusi</a>
+  <a href="{{ url_for('targets_new') }}">Lisää uusi</a>
   <ul>
     {% for item in targets %}
     <li>
