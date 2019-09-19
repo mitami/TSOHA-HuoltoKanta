@@ -1,15 +1,17 @@
 from flask import render_template, request, url_for, redirect
-from flask_login import current_user
+from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.target import Target
 
 
 @app.route("/targets")
+@login_required
 def  targets_get_all():
     return render_template("targets/targets.html", targets = Target.query.all())
 
 @app.route("/targets/<id>")
+@login_required
 def targets_get_one(id):
     target = Target.query.get(id)
     db.session().commit()
@@ -21,6 +23,7 @@ def targets_new():
     return render_template("targets/new.html")
 
 @app.route("/targets/", methods=["POST"])
+@login_required
 def targets_add_one():
     #Login tagi / annotaatio
     #Tarkista, että käyttäjä on admin?
@@ -37,6 +40,7 @@ def targets_add_one():
     return render_template("targets/target.html", target = new_target)
 
 @app.route("/targets/<id>/update")
+@login_required
 def targets_modify_one(id):
     #Login check
     target = Target.query.get(id)
@@ -49,6 +53,7 @@ def targets_modify_one(id):
     return render_template("targets/target.html", target = target)
 
 @app.route("/targets/<id>/delete")
+@login_required
 def targets_delete_one(id):
     #Login check
     #Admin check

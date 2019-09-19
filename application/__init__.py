@@ -24,7 +24,7 @@ from flask_login import LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-login_manager.login_view = "login"
+login_manager.login_view = "user_login"
 login_manager.login_message = "You need to be logged in to access this resource."
 
 @login_manager.user_loader
