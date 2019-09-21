@@ -63,8 +63,10 @@ def targets_modify_one(id):
 @app.route("/targets/<id>/delete")
 @login_required
 def targets_delete_one(id):
-    #Login check
     #Admin check
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+
     target = Target.query.filter_by(id=id).delete()
     db.session().commit()
 

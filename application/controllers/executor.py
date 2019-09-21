@@ -92,10 +92,12 @@ def executors_modify_one(id):
 @app.route("/executor/<id>/delete")
 @login_required
 def executors_delete_one(id):
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
     #ADMIN-käyttäjän poistaminen on estetty toistaiseksi kokonaan
     user = Executor.query.get(id)
     if user.admin:
-        db.session.commit()
+        db.session().commit()
         return render_template("index.html", msg="Admin käyttäjien poistaminen ei ole mahdollista!")
     Executor.query.filter_by(id=id).delete()
     db.session().commit()
