@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Sijainnit</h2>
+<a href="{{ url_for('locations_new') }}">Lisää uusi</a>
+<div>
+  <ul>
+    {% for item in locations %}
+    <li>
+      <a href="{{ url_for('locations_get_one', id = item.id) }}">{{ item.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
