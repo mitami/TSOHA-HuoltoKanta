@@ -19,6 +19,7 @@ def targets_get_one(id):
     return render_template("targets/target.html", target = target)
 
 @app.route("/targets/new")
+@login_required
 def targets_new():
     return render_template("targets/new.html")
 
@@ -41,6 +42,7 @@ def targets_add_one():
     return render_template("targets/target.html", target = new_target)
 
 @app.route("/targets/<id>/edit")
+@login_required
 def targets_edit(id):
     target = Target.query.get(id)
     db.session().commit()
@@ -50,7 +52,9 @@ def targets_edit(id):
 @app.route("/targets/<id>/update", methods=["POST"])
 @login_required
 def targets_modify_one(id):
-    #Login check
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+
     target = Target.query.get(id)
 
     #Mahdollisuus 'siirtää' kohde, eli muuttaa sijainti?
@@ -63,7 +67,6 @@ def targets_modify_one(id):
 @app.route("/targets/<id>/delete")
 @login_required
 def targets_delete_one(id):
-    #Admin check
     if not current_user.get_admin():
         return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
 

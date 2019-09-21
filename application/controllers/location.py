@@ -39,3 +39,33 @@ def locations_delete_one(id):
     db.session().commit()
 
     return redirect(url_for("locations_get_all"))
+
+@app.route("/location/", methods=["POST"])
+@login_required
+def locations_add_one():
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+
+    name = request.form.get("name")
+    if name:
+        location = Location(name)
+        db.session().add(location)
+        db.session().commit()
+        return render_template("locations/location.html", location=location)
+
+    return render_template("locations/edit.html", msg="Sijaintia lisätessä kenttä 'Nimi' on pakollinen!")
+
+@app.route("/location/<id>/update")
+@login_required
+def locations_modify_one(id):
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+
+    name = request.form.get("name")
+    if name:
+        loc = Location.query.get(id=id)
+        loc.name = name
+        db.session().commit()
+        return render_template("locations/location.html", location=loc)
+
+    
