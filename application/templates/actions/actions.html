@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h2>Toimenpiteet</h2>
+  <a href="{{ url_for('actions_new') }}">Lisää uusi</a>
+  <ul>
+    {% for item in actions %}
+    <li>
+      <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a>
+      <span>Tähän päivämäärä tms.</span>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

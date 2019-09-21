@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Luo uusi tehtävä</h2>
+{% if msg %}
+<div class="error-message">
+  <p>{{ msg }}</p>
+</div>
+{% endif %}
+<div class="form-container">
+  <form method="POST", action="{{ url_for('actions_add_one') }}">
+    <div class="form-field-item">
+      <p>Nimi: </p>
+      <input
+        name="name"
+        required
+        maxlength=20
+        autofocus
+      >
+    </div>
+    <div class="form-field-item">
+      <p>Kuvaus: </p>
+      <input
+        name="description"
+        required
+        maxlength=100
+      >
+    </div>
+    <div class="form-field-item">
+      <p>TODO: päivämäärävalikko </p>
+      <input
+        name=""
+        required
+        maxlength=30
+      >
+    </div>
+    <button>Submit</button>
+  </form>
+</div>
+{% endblock %}

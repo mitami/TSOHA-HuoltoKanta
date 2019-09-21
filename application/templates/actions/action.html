@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div>
+  <h3>{{ action.name }}</h3>
+  <p>{{ action.desc }}</p>
+  <a href="{{ url_for('actions_edit', id=action.id) }}">Muokkaa</a>
+  <a href="{{ url_for('actions_delete_one', id=action.id) }}">Poista</a>
+</div>
+{% endblock %}
