@@ -7,7 +7,7 @@ from application.models.location import Location
 @app.route("/locations")
 @login_required
 def locations_get_all():
-    return render_template("locations/locations.html", locations=Locations.query.all())
+    return render_template("locations/locations.html", locations=Location.query.all())
 
 @app.route("/location/<id>")
 @login_required
@@ -55,7 +55,7 @@ def locations_add_one():
 
     return render_template("locations/edit.html", msg="Sijaintia lisätessä kenttä 'Nimi' on pakollinen!")
 
-@app.route("/location/<id>/update")
+@app.route("/location/<id>/update", methods=["POST"])
 @login_required
 def locations_modify_one(id):
     if not current_user.get_admin():
@@ -63,7 +63,7 @@ def locations_modify_one(id):
 
     name = request.form.get("name")
     if name:
-        loc = Location.query.get(id=id)
+        loc = Location.query.get(id)
         loc.name = name
         db.session().commit()
         return render_template("locations/location.html", location=loc)

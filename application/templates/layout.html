@@ -20,6 +20,9 @@
           <a href="{{ url_for('targets_get_all') }}">Kohteet</a>
         </li>
         <li>
+          <a href="{{ url_for('locations_get_all')}}">Sijainnit</a>
+        </li>
+        <li>
           <a href="{{ url_for('executors_get_one', id=current_user.id) }}">Käyttäjä: {{ current_user.name }}</a>
         </li>
         <li>

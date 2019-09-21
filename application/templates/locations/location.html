@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>{{ location.name }}</h2>
+<div>
+  <h3>{{ location.name }}</h3>
+  <a href="{{ url_for('locations_edit', id=location.id) }}">Muokkaa</a>
+  <a href="{{ url_for('locations_delete_one', id=location.id) }}">Poista</a>
+</div>
 {% endblock %}

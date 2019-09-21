@@ -2,4 +2,27 @@
 
 {% block body %}
 <h2>Luo uusi sijainti</h2>
+
+{% if msg %}
+<div class="error-message">
+  <p>{{ msg }}</p>
+</div>
+{% endif %}
+
+<div class="form-container">
+    <form method="POST", action="{{ url_for('locations_add_one') }}">
+      <div class="form-field-item">
+        <p>Nimi:</p>
+        <input
+          name="name"
+          required
+          maxlength=30
+          minlength="2"
+          autofocus
+        >
+      </div>
+      <button>Submit</button>
+    </form>
+  </div>
+
 {% endblock %}

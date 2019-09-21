@@ -1,5 +1,24 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Muokkaa {{ location.name }} tietoja</h2>
+<h2>Muokkaa {{ location.name }} -tietoja</h2>
+{% if msg %}
+<div class="error-message">
+  <p>{{ msg }}</p>
+</div>
+{% endif %}
+<div class="form-container">
+  <form method="POST", action="{{ url_for('locations_modify_one', id=location.id) }}">
+    <div class="form-field-item">
+      <p>Nimi: </p>
+      <input
+        name="name"
+        required
+        maxlength=30
+        autofocus
+      >
+    </div>
+    <button>Submit</button>
+  </form>
+</div>
 {% endblock %}
