@@ -25,8 +25,9 @@ def targets_new():
 @app.route("/targets/", methods=["POST"])
 @login_required
 def targets_add_one():
-    #Login tagi / annotaatio
     #Tarkista, että käyttäjä on admin?
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain admin voi suorittaa toiminnon!")
 
     #Tässä vaiheessa varmaankin täytyy tehdä linkitys Kohteen ja Sijainnin
     #välille.
