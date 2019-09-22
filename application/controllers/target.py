@@ -14,10 +14,15 @@ def  targets_get_all():
 @app.route("/targets/<id>")
 @login_required
 def targets_get_one(id):
-    target = Target.query.get(id)
+    target = Target.find_target_and_its_location(id)
+    #Tarkista vastaus, jos tyhjä, palauta viesti.
     db.session().commit()
 
-    return render_template("targets/target.html", target = target)
+    for item in target:
+        print("<<----- FIND TARGET AND ITS LOCATION ----->>")
+        print(item)
+
+    return render_template("targets/target.html", data = target[0])
 
 @app.route("/targets/new")
 @login_required
