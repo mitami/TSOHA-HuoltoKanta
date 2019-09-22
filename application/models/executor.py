@@ -1,7 +1,7 @@
 from application import db
+from application.models.base import Base
 
-class Executor(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class Executor(Base):
     name = db.Column(db.String(20), nullable=False)
     title = db.Column(db.String(30), nullable=False)
     password = db.Column(db.String(144), nullable=False)

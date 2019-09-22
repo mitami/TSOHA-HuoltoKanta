@@ -1,8 +1,7 @@
 from application import db
+from application.models.base import Base
 
-class Action(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    created = db.Column(db.DateTime, default=db.func.current_timestamp())
+class Action(Base):
     due = db.Column(db.DateTime, default=db.func.current_timestamp())
     desc = db.Column(db.String(255), nullable=False)
     done = db.Column(db.Boolean, nullable=False)
