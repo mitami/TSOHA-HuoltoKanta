@@ -19,19 +19,27 @@
       >
     </div>
     <div class="form-field-item">
+      <p>Valitse kohde:</p>
+      <select name="target">
+        {% for item in targets %}
+        <option value="{{ item.id }}">{{ item.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-field-item">
       <p>Kuvaus: </p>
-      <input
-        name="description"
+      <textarea
+        name="desc"
         required
-        maxlength=100
+        maxlength=255
       >
     </div>
     <div class="form-field-item">
       <p>TODO: päivämäärävalikko </p>
       <input
-        name=""
+        name="due"
+        type="date"
         required
-        maxlength=30
       >
     </div>
     <button>Submit</button>

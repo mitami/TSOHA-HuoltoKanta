@@ -2,6 +2,7 @@ from flask import render_template, request, url_for, redirect
 from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
+from application.models.action import Action
 
 @app.route("/executors")
 def executors_get_all():
@@ -26,9 +27,10 @@ def executors_edit(id):
 @login_required
 def executors_get_one(id):
     new = Executor.query.get(id)
+    #actions = Action.query.filter_by(executor_id = id)
     db.session().commit()
 
-    return render_template("executors/executor.html", executor = new)
+    return render_template("executors/executor.html", executor = new)#, actions = actions)
 
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():

@@ -5,9 +5,9 @@
   <a href="{{ url_for('actions_new') }}">Lisää uusi</a>
   <ul>
     {% for item in actions %}
-    <li>
+    <li class="actions--list-item">
       <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a>
-      <span>Tähän päivämäärä tms.</span>
+      <span>Deadline: </span><span>{{ item.due }}</span>
     </li>
     {% endfor %}
   </ul>

@@ -17,6 +17,9 @@
         </li>
         {% if current_user.is_authenticated %}
         <li>
+          <a href="{{ url_for('actions_get_all') }}">Kaikki tehtävät</a>
+        </li>
+        <li>
           <a href="{{ url_for('targets_get_all') }}">Kohteet</a>
         </li>
         <li>
