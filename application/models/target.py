@@ -6,5 +6,6 @@ class Target(Base):
 
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
     
-    def __init__(self, name):
+    def __init__(self, name, location):
         self.name = name
+        self.location_id = location

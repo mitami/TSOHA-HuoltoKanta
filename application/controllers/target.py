@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.target import Target
+from application.models.location import Location
 
 
 @app.route("/targets")
@@ -21,7 +22,9 @@ def targets_get_one(id):
 @app.route("/targets/new")
 @login_required
 def targets_new():
-    return render_template("targets/new.html")
+    locations = Location.query.all()
+    db.session().commit()
+    return render_template("targets/new.html", locations=locations)
 
 @app.route("/targets/", methods=["POST"])
 @login_required
@@ -35,7 +38,9 @@ def targets_add_one():
     #Älä luo kohdetta, jos tietokannassa ei ole yhtään sijaintia TAI
     #luo kohde ilman sijaintia, ja hoida sijainnittoman kohteen käsittely jotenkin
     name = request.form.get("name")
-    new_target = Target(name)
+    location = request.form.get("location")
+    new_target = Target(name, location)
+    #new_target.location_id = location
     db.session().add(new_target)
     db.session().commit()
 

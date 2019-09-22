@@ -3,6 +3,7 @@
 {% block body %}
 <div>
   <h3>{{ target.name }}</h3>
+  <p>location.name tähän</p>
   <a href="{{ url_for('targets_edit', id=target.id) }}">Muokkaa</a>
   <a href="{{ url_for('targets_delete_one', id=target.id) }}">Poista</a>
 </div>

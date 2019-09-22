@@ -21,6 +21,14 @@
         autofocus
       >
     </div>
+    <div class="form-field-item">
+      <p>Valitse sijainti:</p>
+      <select name="location">
+        {% for item in locations %}
+        <option value="{{ item.id }}">{{ item.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
     <button>Submit</button>
   </form>
 </div>
