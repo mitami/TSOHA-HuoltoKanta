@@ -14,12 +14,18 @@ def actions_get_all():
 
     return render_template("actions/actions.html", actions = actions)
 
-@app.route("/actions/<id>")
+@app.route("/action/<id>")
 @login_required
 def actions_get_one(id):
+    #Näytetään Tehtävän näkymässä Tehtävän Kohde, sekä Käyttäjä, jolle Tehtävä on
+    #merkitty/kuka tehtävän on luonut.
+    data = Action.find_one_with_target_and_user(id)
+    for item in data:
+        print("<<<------ ACTION WITH ALL DATA ------->>>")
+        print(item)
     action = Action.query.get(id)
 
-    return render_template("actions/action.html", action = action)
+    return render_template("actions/action.html", data = data[0])
 
 @app.route("/actions/new")
 @login_required
@@ -38,22 +44,20 @@ def actions_add_one():
     if due:
         due = datetime.strptime(due, '%Y-%m-%d')
         due = due.date()
-    #todo liitostaulun teko oikein, ja uuden actionin luominen sen mukaan
 
+    target_id = request.form.get("target")
+    new = Action(name, desc, due, done, target_id)
 
-    target_id = request.form.get("target_id")
-    new = Action(name, desc, due, done)
-
-    #db.session().add(new)
+    #Lisätään Toimenpide Käyttäjän toimenpiteet -listaan
     executor.actions.append(new)
     db.session().commit()
 
-    return render_template("actions/action.html", action = new)
+    return redirect(url_for("actions_get_one", id = new.id))
 
 @app.route("/actions/<id>/edit")
 @login_required
 def actions_edit(id):
-    action = Actions.query.get(id)
+    action = Action.query.get(id)
     db.session().commit()
 
     return render_template("actions/edit.html", action = action)
@@ -81,6 +85,9 @@ def actions_modify_one(id):
 @app.route("/actions/<id>/delete")
 @login_required
 def actions_delete_one(id):
+    if not current_user.get_admin():
+        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+
     Action.query.filter_by(id=id).delete()
     db.session().commit()
 
