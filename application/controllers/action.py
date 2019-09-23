@@ -32,6 +32,8 @@ def actions_add_one():
     desc = request.form.get("desc")
     due = request.form.get("due")
     #todo liitostaulun teko oikein, ja uuden actionin luominen sen mukaan
+    
+
     target_id = request.form.get("target_id")
     new = Action(name, desc, due)
 

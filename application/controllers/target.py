@@ -49,7 +49,7 @@ def targets_add_one():
     db.session().add(new_target)
     db.session().commit()
 
-    return render_template("targets/target.html", target = new_target)
+    return redirect(url_for("targets_get_one", id=new_target.id))
 
 @app.route("/targets/<id>/edit")
 @login_required
