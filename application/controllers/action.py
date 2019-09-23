@@ -5,6 +5,8 @@ from application.models.executor import Executor
 from application.models.action import Action
 from application.models.target import Target
 
+from datetime import datetime
+
 @app.route("/actions/")
 @login_required
 def actions_get_all():
@@ -28,16 +30,22 @@ def actions_new():
 @app.route("/actions/", methods=["POST"])
 @login_required
 def actions_add_one():
+    executor = Executor.query.get(current_user.id)
     name = request.form.get("name")
     desc = request.form.get("desc")
     due = request.form.get("due")
+    done = False
+    if due:
+        due = datetime.strptime(due, '%Y-%m-%d')
+        due = due.date()
     #todo liitostaulun teko oikein, ja uuden actionin luominen sen mukaan
-    
+
 
     target_id = request.form.get("target_id")
-    new = Action(name, desc, due)
+    new = Action(name, desc, due, done)
 
-    db.session().add(new)
+    #db.session().add(new)
+    executor.actions.append(new)
     db.session().commit()
 
     return render_template("actions/action.html", action = new)
