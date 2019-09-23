@@ -3,9 +3,9 @@
 {% block body %}
 <div>
   <h3>{{ data.action_name }}</h3>
-  <p>{{ data.action_desc }}</p>
-  <p>{{ data.action_due }}</p>
-  <p>{{ data.action_done }}</p>
+  <p>Kuvaus: {{ data.action_desc }}</p>
+  <p>Deadline: {{ data.action_due }}</p>
+  <p>Tehty: {{ data.action_done }}</p>
   <p>Tehtävän kohde: {{ data.target_name }}</p>
   <p>Kohteen sijainti: {{ data.location_name }}</p>
   <p>Tehtävän tekijät: {{ data.executor_name }}</p>
