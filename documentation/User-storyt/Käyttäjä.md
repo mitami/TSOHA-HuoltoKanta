@@ -39,3 +39,13 @@ Polku: `/executor/id/update`
 Polku: `/executor/id/delete`
 
 `DELETE FROM Huoltomiehet WHERE id = X`
+
+#### Yksittäisen Tehtävän näkymä
+Polku `/actions/id`
+
+`SELECT action.id, action.name, action.desc, action.done, action.due, target.name, location.name, executor.name"`
+                    `" FROM Action JOIN executor_action ON executor_action.action_id = action.id"`
+                    `" JOIN Executor ON Executor.id = executor_action.executor_id"`
+                    `" JOIN Target ON Target.id = action.target_id"`
+                    `" JOIN Location ON Location.id = target.location_id"`
+                    `" WHERE action.id = :id`
