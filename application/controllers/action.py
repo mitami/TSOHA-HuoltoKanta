@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.action import Action
+from application.models.target import Target
 
 @app.route("/actions/")
 @login_required
@@ -21,7 +22,8 @@ def actions_get_one(id):
 @app.route("/actions/new")
 @login_required
 def actions_new():
-    return render_template("actions/new.html")
+    targets = Target.query.all()
+    return render_template("actions/new.html", targets=targets)
 
 @app.route("/actions/", methods=["POST"])
 @login_required
@@ -29,6 +31,8 @@ def actions_add_one():
     name = request.form.get("name")
     desc = request.form.get("desc")
     due = request.form.get("due")
+    #todo liitostaulun teko oikein, ja uuden actionin luominen sen mukaan
+    target_id = request.form.get("target_id")
     new = Action(name, desc, due)
 
     db.session().add(new)

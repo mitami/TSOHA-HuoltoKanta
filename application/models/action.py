@@ -6,6 +6,7 @@ class Action(Base):
     desc = db.Column(db.String(255), nullable=False)
     done = db.Column(db.Boolean, nullable=False)
 
+
     def __init__(self, desc, due, done):
         self.desc = desc
         self.done = done
