@@ -2,9 +2,33 @@
 
 {% block body %}
 <div>
-  <h3>{{ data.target_name }}</h3>
-  <p>{{ data.location_name }}</p>
-  <a href="{{ url_for('targets_edit', id=data.target_id) }}">Muokkaa</a>
-  <a href="{{ url_for('targets_delete_one', id=data.target_id) }}">Poista</a>
+  <h3>{{ target.target_name }}</h3>
+  <div class="target--location-info">
+    <h4>Sijainti:</h4>
+    <p>{{ target.location_name }}</p>
+  </div>
+  <div class="target--action-info">
+    <h4>{{ target.target_name }} liittyvät Tehtävät:</h4>
+    <div class="target--individual-action">
+      <table class="target--actions-table">
+        <tr>
+          <th>Nimi</th>
+          <th>Deadline</th>
+          <th>Kuvaus</th>
+          <th>Status</th>
+        </tr>
+      {% for item in actions %}
+        <tr>
+          <td>{{ item.action_name }}</td>
+          <td>{{ item.action_due }}</td>
+          <td>{{ item.action_desc }}</td>
+          <td>{{ item.action_done }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    </div>
+  </div>
+  <a href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
+  <a href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
 </div>
 {% endblock %}
