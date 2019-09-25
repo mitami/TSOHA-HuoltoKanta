@@ -6,4 +6,12 @@
   <a href="{{ url_for('locations_edit', id=location.id) }}">Muokkaa</a>
   <a href="{{ url_for('locations_delete_one', id=location.id) }}">Poista</a>
 </div>
+<div class="location--target-info">
+    <h4>Kohteet Sijainnissa {{ location.name }}</h4>
+    {% for item in targets %}
+    <div class="location--individual-target">
+      <a href="{{ url_for('targets_get_one', id=item.id) }}">{{ item.name }}</a>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

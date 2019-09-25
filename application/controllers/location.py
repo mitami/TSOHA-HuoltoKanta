@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.location import Location
+from application.models.target import Target
 from application.utils.constants import msg_only_admin
 
 @app.route("/locations")
@@ -14,9 +15,10 @@ def locations_get_all():
 @login_required
 def locations_get_one(id):
     location = Location.query.get(id)
+    targets = Target.query.filter_by(location_id = id)
     db.session().commit()
 
-    return render_template("locations/location.html", location=location)
+    return render_template("locations/location.html", location=location, targets=targets)
 
 @app.route("/locations/new")
 @login_required

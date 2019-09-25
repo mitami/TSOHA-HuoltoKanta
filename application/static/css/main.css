@@ -75,16 +75,20 @@ body {
   background-color: #e4e4e4;
 }
 
-.target--actions-table tr:nth-child(even) {
+.tablelist tr:nth-child(even) {
   background-color: #dfdfdf;
 }
 
-.target--actions-table, th, td {
+.tablelist, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-.target--actions-table th, td {
+.tablelist th, td {
   padding: 5px;
+}
+
+.location--target-info {
+  padding: 15px;
 }
 

@@ -3,6 +3,8 @@
 {% block body %}
 <div>
   <h3>{{ target.target_name }}</h3>
+  <a href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
+  <a href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
   <div class="target--location-info">
     <h4>Sijainti:</h4>
     <p>{{ target.location_name }}</p>
@@ -10,7 +12,7 @@
   <div class="target--action-info">
     <h4>{{ target.target_name }} liittyvät Tehtävät:</h4>
     <div class="target--individual-action">
-      <table class="target--actions-table">
+      <table class="tablelist">
         <tr>
           <th>Nimi</th>
           <th>Deadline</th>
@@ -28,7 +30,5 @@
       </table>
     </div>
   </div>
-  <a href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
-  <a href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
 </div>
 {% endblock %}
