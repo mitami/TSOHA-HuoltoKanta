@@ -105,7 +105,8 @@ def executors_delete_one(id):
     if user.admin:
         db.session().commit()
         return render_template("index.html", msg="Admin käyttäjien poistaminen ei ole mahdollista!")
-    Executor.query.filter_by(id=id).delete()
+    to_be_deleted = Executor.query.filter_by(id=id).first()
+    db.session().delete(to_be_deleted)
     db.session().commit()
 
     return redirect(url_for("executors_get_all"))

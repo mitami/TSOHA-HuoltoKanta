@@ -104,7 +104,8 @@ def actions_delete_one(id):
     if not current_user.get_admin():
         return render_template("index.html", msg=msg_only_admin)
 
-    Action.query.filter_by(id=id).delete()
+    to_be_deleted = Action.query.filter_by(id=id).first()
+    db.session().delete(to_be_deleted)
     db.session().commit()
 
     return redirect(url_for('actions_get_all'))
