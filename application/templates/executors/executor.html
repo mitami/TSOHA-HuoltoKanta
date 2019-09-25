@@ -4,6 +4,26 @@
   <div>
     <h3>{{ executor.name }}</h3>
     <p>{{ executor.title }}</p>
+    <div class="executor--actions">
+      <div class="executor--individual-action">
+        <table class="tablelist">
+          <tr>
+            <th>Nimi</th>
+            <th>Deadline</th>
+            <th>Kuvaus</th>
+            <th>Status</th>
+          </tr>
+        {% for item in actions %}
+          <tr>
+            <td>{{ item.action_name }}</td>
+            <td>{{ item.action_due }}</td>
+            <td>{{ item.action_desc }}</td>
+            <td>{{ item.action_done }}</td>
+          </tr>
+        {% endfor %}
+        </table>
+      </div>
+    </div>
     <a href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa</a>
     <a href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista</a>
   </div>

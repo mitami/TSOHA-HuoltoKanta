@@ -29,11 +29,12 @@ def executors_edit(id):
 @app.route("/executor/<id>")
 @login_required
 def executors_get_one(id):
-    new = Executor.query.get(id)
-    #actions = Action.query.filter_by(executor_id = id)
+    user = Executor.query.get(id)
+    actions = Executor.get_all_executors_tasks(id)
+
     db.session().commit()
 
-    return render_template("executors/executor.html", executor = new)#, actions = actions)
+    return render_template("executors/executor.html", executor = user, actions = actions)
 
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():
