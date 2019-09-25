@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.location import Location
+from application.utils.constants import msg_only_admin
 
 @app.route("/locations")
 @login_required
@@ -33,7 +34,7 @@ def locations_edit(id):
 @login_required
 def locations_delete_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     Location.query.filter_by(id=id).delete()
     db.session().commit()
@@ -44,7 +45,7 @@ def locations_delete_one(id):
 @login_required
 def locations_add_one():
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     name = request.form.get("name")
     if name:
@@ -59,7 +60,7 @@ def locations_add_one():
 @login_required
 def locations_modify_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     name = request.form.get("name")
     if name:

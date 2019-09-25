@@ -4,6 +4,7 @@ from application import app, db
 from application.models.executor import Executor
 from application.models.target import Target
 from application.models.location import Location
+from application.utils.constants import msg_only_admin
 
 
 @app.route("/targets")
@@ -36,7 +37,7 @@ def targets_new():
 def targets_add_one():
     #Tarkista, että käyttäjä on admin?
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     #Tässä vaiheessa varmaankin täytyy tehdä linkitys Kohteen ja Sijainnin
     #välille.
@@ -65,11 +66,10 @@ def targets_edit(id):
 @login_required
 def targets_modify_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     target = Target.query.get(id)
 
-    #Mahdollisuus 'siirtää' kohde, eli muuttaa sijainti?
     #Nimen validointi
     name = request.form.get("name")
     location = request.form.get("location")
@@ -85,7 +85,7 @@ def targets_modify_one(id):
 @login_required
 def targets_delete_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     target = Target.query.filter_by(id=id).delete()
     db.session().commit()

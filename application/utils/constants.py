@@ -1,0 +1,1 @@
+msg_only_admin = "Vain Admin voi suorittaa tämän toiminnon!"

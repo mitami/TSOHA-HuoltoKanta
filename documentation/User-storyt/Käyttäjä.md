@@ -2,15 +2,19 @@
 
 Admin -käyttäjänä haluan nähdä listauksen kaikista järjestelmään kirjatuista työntekijöistä, tarkemmat tiedot jokaisesta yksittäisestä työntekijästä, sekä mahdollisuuden muokata yksittäisten työntekijän nimeä ja titteliä ja lisätä sekä poistaa työntekijöitä järjestelmästä.
 
+Admin-käyttäjänä haluan muokata Kohteen Sijaintia sekä nimeä, poistaa Kohteita, ja lisätä Kohteita
+
+Admin käyttäjänä haluan lisätä ja poistaa ja muokata Sijainteja
+
 Käyttäjänä haluan pystyä vaihtamaan salasanani sekä tunnukseni
 
 Käyttäjänä haluan nähdä listauksen kaikista Kohteista, joille toimenpiteitä/tehtäviä tehdään/voidaan tehdä
+Käyttäjänä haluan tarkastella yksittäistä kohdetta, ja nähdä siihen liittyvät tiedot ja tehtävät listattuna
 
 Käyttäjänä haluan nähdä listauksen kaikista tehtävistä, jotka on rekisteroity minulle
 Käyttäjänä haluan merkitä oman tehtäväni tehdyksi
 Käyttäjänä haluan luoda uusia tehtäviä, jotka liittyvät tiettyihin kohteisiin
 
-Käyttäjänä haluan tarkastella yksittäistä kohdetaa, ja nähdä siihen liittyvät tiedot ja tehtävät listattuna
 
 
 ------------------------------------------------

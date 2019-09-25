@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.action import Action
+from application.utils.constants import msg_only_admin
 
 @app.route("/executors")
 def executors_get_all():
@@ -18,6 +19,8 @@ def executors_new():
 @app.route("/executor/<id>/edit")
 @login_required
 def executors_edit(id):
+    if not current_user.get_admin():
+        return render_template("index.html", msg=msg_only_admin)
     item = Executor.query.get(id)
     db.session().commit()
 
@@ -37,11 +40,11 @@ def executors_add_one():
     #Siivoa tämä?
     if current_user.is_authenticated:
         if not current_user.get_admin():
-            return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+            return render_template("index.html", msg=msg_only_admin)
 
     users = db.session.query(Executor).count()
     if users != 0 and not current_user.is_authenticated:
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     print("AMOUNT OF USERS: ")
     print(users)
@@ -95,7 +98,7 @@ def executors_modify_one(id):
 @login_required
 def executors_delete_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
     #ADMIN-käyttäjän poistaminen on estetty toistaiseksi kokonaan
     user = Executor.query.get(id)
     if user.admin:

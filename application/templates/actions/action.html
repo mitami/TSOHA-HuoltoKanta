@@ -9,6 +9,7 @@
   <p>Tehtävän kohde: {{ data.target_name }}</p>
   <p>Kohteen sijainti: {{ data.location_name }}</p>
   <p>Tehtävän tekijät: {{ data.executor_name }}</p>
+  <a href="{{ url_for('actions_toggle_done', id=data.action_id) }}">Merkitse Tehdyksi</a>
   <a href="{{ url_for('actions_edit', id=data.action_id) }}">Muokkaa</a>
   <a href="{{ url_for('actions_delete_one', id=data.action_id) }}">Poista</a>
 </div>

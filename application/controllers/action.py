@@ -4,6 +4,7 @@ from application import app, db
 from application.models.executor import Executor
 from application.models.action import Action
 from application.models.target import Target
+from application.utils.constants import msg_only_admin
 
 from datetime import datetime
 
@@ -54,6 +55,19 @@ def actions_add_one():
 
     return redirect(url_for("actions_get_one", id = new.id))
 
+@app.route("/actions/<id>/done")
+@login_required
+def actions_toggle_done(id):
+    action = Action.query.get(id)
+    if not action.done:
+        action.done = True
+    else:
+        action.done = False
+
+    db.session().commit()
+
+    return redirect(url_for("actions_get_one", id=action.id))
+
 @app.route("/actions/<id>/edit")
 @login_required
 def actions_edit(id):
@@ -76,6 +90,8 @@ def actions_modify_one(id):
     if desc:
         action.desc = desc
     if due:
+        due = datetime.strptime(due, '%Y-%m-%d')
+        due = due.date()
         action.due = due
 
     db.session().commit()
@@ -86,7 +102,7 @@ def actions_modify_one(id):
 @login_required
 def actions_delete_one(id):
     if not current_user.get_admin():
-        return render_template("index.html", msg="Vain Admin voi suorittaa toiminnon!")
+        return render_template("index.html", msg=msg_only_admin)
 
     Action.query.filter_by(id=id).delete()
     db.session().commit()
