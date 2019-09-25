@@ -54,10 +54,12 @@ def targets_add_one():
 @app.route("/targets/<id>/edit")
 @login_required
 def targets_edit(id):
+    locations = Location.query.all()
+    
     target = Target.query.get(id)
     db.session().commit()
 
-    return render_template("targets/edit.html", target = target)
+    return render_template("targets/edit.html", target = target, locations=locations)
 
 @app.route("/targets/<id>/update", methods=["POST"])
 @login_required
@@ -69,10 +71,15 @@ def targets_modify_one(id):
 
     #Mahdollisuus 'siirtää' kohde, eli muuttaa sijainti?
     #Nimen validointi
-    target.name = request.form.get("name")
+    name = request.form.get("name")
+    location = request.form.get("location")
+    if name:
+        target.name = name
+    if location:
+        target.location_id = location
     db.session().commit()
 
-    return render_template("targets/target.html", target = target)
+    return redirect(url_for("targets_get_one", id = target.id))
 
 @app.route("/targets/<id>/delete")
 @login_required
