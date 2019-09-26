@@ -31,10 +31,14 @@ def executors_edit(id):
 def executors_get_one(id):
     user = Executor.query.get(id)
     actions = Executor.get_all_executors_tasks(id)
-
+    amounts = {}
+    undone = Executor.get_amount_of_executors_undone_tasks(id)
+    done = Executor.get_amount_of_executors_done_tasks(id)
     db.session().commit()
+    amounts['undone'] = undone[0]
+    amounts['done'] = done[0]
 
-    return render_template("executors/executor.html", executor = user, actions = actions)
+    return render_template("executors/executor.html", executor = user, actions = actions, amounts = amounts)
 
 @app.route("/executor/", methods=["POST"])
 def executors_add_one():

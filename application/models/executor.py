@@ -2,6 +2,7 @@ from application import db
 from application.models.base import Base
 from application.models.action import Action
 
+from application.utils.constants import boolean_converter
 from sqlalchemy import text
 
 association_table = db.Table('executor_action', Base.metadata,
@@ -43,6 +44,56 @@ class Executor(Base):
                             "action_desc": row[2],
                             "action_due": row[3],
                             "action_done": row[4]})
+
+        return response
+
+    @staticmethod
+    def get_amount_of_executors_undone_tasks(id):
+        stmt = text("SELECT COUNT(*)"
+                    "FROM executor_action"
+                    " LEFT JOIN Action"
+                    " ON Action.id = executor_action.action_id"
+                    " WHERE Action.done = :boolean"
+                    " AND executor_action.executor_id = :id").params(id = id, boolean = boolean_converter(False))
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append(row[0])
+
+        return response
+    
+    @staticmethod
+    def get_amount_of_executors_done_tasks(id):
+        stmt = text("SELECT COUNT(*)"
+                    "FROM executor_action"
+                    " LEFT JOIN Action"
+                    " ON Action.id = executor_action.action_id"
+                    " WHERE Action.done = :boolean"
+                    " AND executor_action.executor_id = :id").params(id = id, boolean = boolean_converter(True))
+        
+        res = db.engine.execute(stmt)
+        
+        response = []
+        for row in res:
+            response.append(row[0])
+
+        return response
+
+    @staticmethod
+    def get_amount_of_executors_all_tasks(id):
+        stmt = text("SELECT COUNT(*)"
+                    "FROM executor_action"
+                    " LEFT JOIN Action"
+                    " ON Action.id = executor_action.action_id"
+                    " WHERE executor_action.executor_id = :id").params(id = id)
+        
+        res = db.engine.execute(stmt)
+        
+        response = []
+        for row in res:
+            response.append(row[0])
 
         return response
 
