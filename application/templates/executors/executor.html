@@ -10,17 +10,19 @@
       <div class="generic-list">
         <h4>Omat tehtävät:</h4>
         <p>Tehdyt: {{ amounts.done }} Tekemättömät: {{ amounts.undone }}</p>
-        <span>Nimi</span>
-        <span>Deadline</span>
-        <span>Kuvaus</span>
-        <span>Status</span>
+        <div class="list-legend">
+          <div><p>Status indicators:</p></div>
+          <div class="link-button list-inline success">Done</div>
+          <div class="link-button list-inline alert">Not done</div>
+          <div class="link-button list-inline danger">Late</div>
+        </div>
         {% for item in actions %}
         <div class="generic-list--row">
           <div class="generic-list--item">
             <a href="{{ url_for('actions_get_one', id=item.action_id) }}">{{ item.action_name }}</a>
-            <span>{{ item.action_due }}</span>
-            <span class="right">{{ item.action_done }}</span>
+            <span class="right">{{ item.action_due }}</span>
           </div>
+          <a href="{{ url_for('actions_toggle_done', id=item.action_id) }}" class="link-button {{ 'alert' if not item.action_done }} list-inline">status</a>
           <a href="{{ url_for('actions_delete_one', id=item.action_id) }}" class="link-button danger list-inline">Poista</a>
         </div>
         {% endfor %}

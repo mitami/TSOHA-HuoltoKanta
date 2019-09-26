@@ -113,6 +113,11 @@ body {
   box-shadow: none;
 }
 
+.success {
+  background-color: #4f9400;
+  color: white;
+}
+
 .alert {
   color: black;
   background-color: rgb(214, 214, 46);
@@ -120,6 +125,7 @@ body {
 
 .danger {
   background-color: rgb(255, 70, 70);
+  color: white;
 }
 
 .generic-list {
@@ -158,4 +164,21 @@ body {
   padding: 5px;
   box-shadow: none;
   border-radius: 0;
+}
+
+.list-legend {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 20px;
+}
+
+.list-legend div {
+  text-align: center;
+}
+
+.list-legend p {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-weight: 900;
 }
