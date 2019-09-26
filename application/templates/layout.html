@@ -10,7 +10,7 @@
     <div class="navbar">
       <div class="navbar-links">
         <a href="/">Main</a>
-        <a href="/executors">Huoltomiehet</a>
+        <a href="/executors">Käyttäjät</a>
       {% if current_user.is_authenticated %}
         <a href="{{ url_for('actions_get_all') }}">Kaikki tehtävät</a>
         <a href="{{ url_for('targets_get_all') }}">Kohteet</a>

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <h2>Huoltomiehet</h2>
+  <h2>Käyttäjät</h2>
   <a class="link-button" href="{{ url_for('executors_new') }}">Lisää uusi</a>
   <div class="generic-list">
     {% for item in executors %}

@@ -11,10 +11,10 @@
         <h4>Omat tehtävät:</h4>
         <p>Tehdyt: {{ amounts.done }} Tekemättömät: {{ amounts.undone }}</p>
         <div class="list-legend">
-          <div><p>Status indicators:</p></div>
-          <div class="link-button list-inline success">Done</div>
-          <div class="link-button list-inline alert">Not done</div>
-          <div class="link-button list-inline danger">Late</div>
+          <div><p>Status -värikoodit:</p></div>
+          <div class="link-button list-inline success">Tehty</div>
+          <div class="link-button list-inline alert">Tekemättä</div>
+          <div class="link-button list-inline danger">Myöhässä</div>
         </div>
         {% for item in actions %}
         <div class="generic-list--row">
