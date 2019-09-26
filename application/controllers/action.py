@@ -21,9 +21,6 @@ def actions_get_one(id):
     #Näytetään Tehtävän näkymässä Tehtävän Kohde, sekä Käyttäjä, jolle Tehtävä on
     #merkitty/kuka tehtävän on luonut.
     data = Action.find_one_with_target_and_user(id)
-    for item in data:
-        print("<<<------ ACTION WITH ALL DATA ------->>>")
-        print(item)
     action = Action.query.get(id)
 
     return render_template("actions/action.html", data = data[0])

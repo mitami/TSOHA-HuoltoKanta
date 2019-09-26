@@ -24,7 +24,7 @@ class Action(Base):
     @staticmethod
     def find_one_with_target_and_user(id):
         #Voiko SQL -kyselyä optimoida?
-        stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.name, location.name, executor.name"
+        stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, executor.id, executor.name"
                     " FROM Action JOIN executor_action ON executor_action.action_id = action.id"
                     " JOIN Executor ON Executor.id = executor_action.executor_id"
                     " JOIN Target ON Target.id = action.target_id"
@@ -40,8 +40,11 @@ class Action(Base):
                             "action_desc": row[2],
                             "action_done": row[3],
                             "action_due": row[4],
-                            "target_name": row[5],
-                            "location_name": row[6],
-                            "executor_name": row[7]})
+                            "target_id": row[5],
+                            "target_name": row[6],
+                            "location_id": row[7],
+                            "location_name": row[8],
+                            "executor_id": row[9],
+                            "executor_name": row[10]})
 
         return response

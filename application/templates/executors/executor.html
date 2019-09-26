@@ -19,7 +19,7 @@
           </tr>
         {% for item in actions %}
           <tr>
-            <td>{{ item.action_name }}</td>
+            <td><a href="{{ url_for('actions_get_one', id=item.action_id) }}">{{ item.action_name }}</a></td>
             <td>{{ item.action_due }}</td>
             <td>{{ item.action_desc }}</td>
             <td>{{ item.action_done }}</td>

@@ -6,9 +6,9 @@
   <p>Kuvaus: {{ data.action_desc }}</p>
   <p>Deadline: {{ data.action_due }}</p>
   <p>Tehty: {{ data.action_done }}</p>
-  <p>Tehtävän kohde: {{ data.target_name }}</p>
-  <p>Kohteen sijainti: {{ data.location_name }}</p>
-  <p>Tehtävän tekijät: {{ data.executor_name }}</p>
+  <p>Tehtävän kohde: <a href="{{ url_for('targets_get_one', id=data.target_id) }}">{{ data.target_name }}</a></p>
+  <p>Kohteen sijainti: <a href="{{ url_for('locations_get_one', id=data.location_id) }}">{{ data.location_name }}</a></p>
+  <p>Tehtävän tekijät: <a href="{{ url_for('executors_get_one', id=data.executor_id) }}">{{ data.executor_name }}</a></p>
   <a class="link-button" href="{{ url_for('actions_toggle_done', id=data.action_id) }}">Merkitse Tehdyksi</a>
   <a class="link-button alert" href="{{ url_for('actions_edit', id=data.action_id) }}">Muokkaa</a>
   <a class="link-button danger" href="{{ url_for('actions_delete_one', id=data.action_id) }}">Poista</a>
