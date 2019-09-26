@@ -50,9 +50,31 @@ Polku: `/executor/id/delete`
 #### Yksittäisen Tehtävän näkymä
 Polku `/actions/id`
 
+
+Käyttäjän Tehtävät:
 `SELECT action.id, action.name, action.desc, action.done, action.due, target.name, location.name, executor.name"`
                     `" FROM Action JOIN executor_action ON executor_action.action_id = action.id"`
                     `" JOIN Executor ON Executor.id = executor_action.executor_id"`
                     `" JOIN Target ON Target.id = action.target_id"`
                     `" JOIN Location ON Location.id = target.location_id"`
                     `" WHERE action.id = :id`
+
+Käyttäjän tekemättömien Tehtävien määrä:
+`SELECT COUNT(*)`
+`FROM executor_action`
+`LEFT JOIN Action`
+`ON Action.id = executor_action.action_id`
+`WHERE Action.done = :boolean`
+`AND executor_action.executor_id = :id`
+
+Käyttäjän tehtyjen Tehtävien määrä:
+`SELECT COUNT(*)`
+`FROM executor_action`
+`LEFT JOIN Action`
+`ON Action.id = executor_action.action_id`
+`WHERE Action.done = :boolean`
+`AND executor_action.executor_id = :id`
+
+Ylläolevissa "boolean" -parametri johtuu SQLiten ja PSQL eroista Boolean -tyypin
+käsittelyssä. Ohjelma tarkistaa ensin ollaanko tuotannossa vai kehitysympäristössä,
+ja sen perusteella valitsee käytetäänkö TRUE/FALSE vai 0/1
