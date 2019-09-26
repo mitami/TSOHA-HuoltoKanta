@@ -22,31 +22,30 @@
 
 .navbar-links {
   list-style-type: none;
-  margin: 0;
   padding: 0;
   overflow: hidden;
   width: 100%;
+  height: 100%;
 }
 
-.navbar-links li {
-  float: left;
-  padding: 20px;
-}
-
-.navbar-links li:last-child {
+.navbar-links a:last-child {
   float: right;
 }
 
-.navbar-links li:hover {
+.navbar-links a:hover {
   background-color: black;
 }
-.navbar-links li a {
+.navbar-links a {
   text-decoration: none;
   color: white;
+  padding: 20px;
+  float: left;
+  text-align: center;
 }
 
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .content-container {
@@ -93,11 +92,19 @@ body {
 }
 
 .link-button {
-  padding: 5px;
+  padding: 8px;
   border: none;
   color: white;
   background-color: #4f9400;
   text-decoration: none;
+  box-shadow: #d1d1d1 4px 4px 4px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.link-button:hover {
+  box-shadow: none;
 }
 
 .alert {
