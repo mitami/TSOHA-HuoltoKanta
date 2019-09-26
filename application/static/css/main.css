@@ -41,6 +41,8 @@
   padding: 20px;
   float: left;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 body {
