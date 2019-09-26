@@ -2,7 +2,7 @@
 
 {% block body %}
   <h2>Huoltomiehet</h2>
-  <a href="{{ url_for('executors_new') }}">Lisää uusi</a>
+  <a class="link-button" href="{{ url_for('executors_new') }}">Lisää uusi</a>
   <ul>
     {% for item in executors %}
     <li>

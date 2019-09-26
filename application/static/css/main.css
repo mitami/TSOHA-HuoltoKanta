@@ -92,3 +92,20 @@ body {
   padding: 15px;
 }
 
+.link-button {
+  padding: 5px;
+  border: none;
+  color: white;
+  background-color: #4f9400;
+  text-decoration: none;
+}
+
+.alert {
+  color: black;
+  background-color: rgb(214, 214, 46);
+}
+
+.danger {
+  background-color: rgb(255, 70, 70);
+}
+

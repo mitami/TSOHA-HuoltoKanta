@@ -4,6 +4,8 @@
   <div>
     <h3>{{ executor.name }}</h3>
     <p>{{ executor.title }}</p>
+    <a class="link-button alert" href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa käyttäjän tietoja</a>
+    <a class="link-button danger" href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista käyttäjä</a>
     <div class="executor--actions">
       <h4>Omat tehtävät:</h4>
       <p>Tehdyt: {{ amounts.done }} Tekemättömät: {{ amounts.undone }}</p>
@@ -26,7 +28,5 @@
         </table>
       </div>
     </div>
-    <a href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa</a>
-    <a href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista</a>
   </div>
 {% endblock %}

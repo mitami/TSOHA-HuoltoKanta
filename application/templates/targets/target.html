@@ -3,8 +3,8 @@
 {% block body %}
 <div>
   <h3>{{ target.target_name }}</h3>
-  <a href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
-  <a href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
+  <a class="link-button alert" href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
+  <a class="link-button danger" href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
   <div class="target--location-info">
     <h4>Sijainti:</h4>
     <p>{{ target.location_name }}</p>
