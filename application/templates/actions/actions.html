@@ -7,7 +7,7 @@
     {% for item in actions %}
     <div class="generic-list--item">
       <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a>
-      <span>Deadline: </span><span>{{ item.due }}</span>
+      <span class="right">Deadline: {{ item.due }}</span>
     </div>
     {% endfor %}
   </div>
