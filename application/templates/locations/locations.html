@@ -4,12 +4,12 @@
 <h2>Sijainnit</h2>
 <a class="link-button" href="{{ url_for('locations_new') }}">Lisää uusi</a>
 <div>
-  <ul>
+  <div class="generic-list">
     {% for item in locations %}
-    <li>
+    <div class="generic-list--item">
       <a href="{{ url_for('locations_get_one', id = item.id) }}">{{ item.name }}</a>
-    </li>
+    </div>
     {% endfor %}
-  </ul>
+  </div>
 </div>
 {% endblock %}

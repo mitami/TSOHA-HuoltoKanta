@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .error-message {
   color: red;
   font-weight: 900;
@@ -118,3 +122,24 @@ body {
   background-color: rgb(255, 70, 70);
 }
 
+.generic-list {
+  padding: 5%;
+}
+
+.generic-list--item {
+   padding: 5px;
+   background-color: #d1d1d1;
+}
+
+.generic-list div:nth-child(even) {
+  background-color: #dfdfdf;
+}
+
+.generic-list--item:hover {
+  background-color: #4f9400 !important;
+  color: white;
+}
+
+.generic-list--item:hover > a{
+  color: white;
+}

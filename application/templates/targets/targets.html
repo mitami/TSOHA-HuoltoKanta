@@ -3,11 +3,11 @@
 {% block body %}
   <h2>Kohteet</h2>
   <a class="link-button" href="{{ url_for('targets_new') }}">Lisää uusi</a>
-  <ul>
+  <div class="generic-list">
     {% for item in targets %}
-    <li>
+    <div class="generic-list--item">
       <a href="{{ url_for('targets_get_one', id=item.id) }}">{{ item.name }}</a>
-    </li>
+    </div>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

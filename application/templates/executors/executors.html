@@ -3,13 +3,13 @@
 {% block body %}
   <h2>Huoltomiehet</h2>
   <a class="link-button" href="{{ url_for('executors_new') }}">Lisää uusi</a>
-  <ul>
+  <div class="generic-list">
     {% for item in executors %}
-    <li>
+    <div class="generic-list--item">
       <a href="{{ url_for('executors_get_one', id=item.id) }}">
         {{ item.name }}  {{ item.title }}
       </a>
-    </li>
+    </div>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}
