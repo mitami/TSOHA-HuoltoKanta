@@ -7,7 +7,7 @@
   <a class="link-button danger" href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
   <div class="target--location-info">
     <h4>Sijainti:</h4>
-    <p>{{ target.location_name }}</p>
+    <p><a href="{{ url_for('locations_get_one', id=target.location_id) }}">{{ target.location_name }}</a></p>
   </div>
   <div class="target--action-info">
     <h4>{{ target.target_name }} liittyvät Tehtävät:</h4>
