@@ -5,9 +5,12 @@
   <a class="link-button" href="{{ url_for('actions_new') }}">Lisää uusi</a>
   <div class="generic-list">
     {% for item in actions %}
-    <div class="generic-list--item">
-      <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a>
-      <span class="right">Deadline: {{ item.due }}</span>
+    <div class="generic-list--row">
+      <div class="generic-list--item">
+        <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a>
+        <span class="right">Deadline: {{ item.due }}</span>
+      </div>
+      <a href="{{ url_for('actions_delete_one', id=item.id) }}" class="link-button danger right list-inline">Poista</a>
     </div>
     {% endfor %}
   </div>

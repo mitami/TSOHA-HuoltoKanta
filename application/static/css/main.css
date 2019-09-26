@@ -126,12 +126,18 @@ body {
   padding: 5%;
 }
 
+.generic-list--row {
+  display: flex;
+  width: 100%;
+}
+
 .generic-list--item {
    padding: 5px;
    background-color: #d1d1d1;
+   width: 80%;
 }
 
-.generic-list div:nth-child(even) {
+.generic-list .generic-list--row div:nth-child(even) {
   background-color: #dfdfdf;
 }
 
@@ -146,4 +152,10 @@ body {
 
 .right {
   float: right;
+}
+
+.list-inline {
+  padding: 5px;
+  box-shadow: none;
+  border-radius: 0;
 }
