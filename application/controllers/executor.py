@@ -56,6 +56,10 @@ def executors_add_one():
 
     pword = request.form.get("pword")
     name = request.form.get("name")
+    existing = Executor.query.filter_by(name = name)
+    if existing:
+        return render_template("executors/new.html", msg = "Käyttäjänimi on jo käytössä")
+
     title = request.form.get("title")
     if len(pword) < 4 or len(pword) > 20:
         return render_template("executors/new.html", msg = "Salasanan pituus oltava 4-20 merkkiä!")
