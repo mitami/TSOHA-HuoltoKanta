@@ -8,7 +8,7 @@
 
 tunnus | salasana |
 ---- | ----
-admin | test
+admin | admin
 test | testi
 
 
