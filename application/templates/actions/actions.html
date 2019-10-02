@@ -6,10 +6,13 @@
   <a class="btn btn-success" href="{{ url_for('actions_new') }}">Lisää uusi</a>
   <div class="list-group m-5">
     {% for item in actions %}
-    <li class="list-group-item py-0">
-        <a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }} Deadline: {{ item.due }}</a>
-        <a href="{{ url_for('actions_delete_one', id=item.id) }}" class="btn btn-danger py-0 float-right">Poista</a>
-    </li>
+    <div class="list-group-item pr-0 py-0">
+      <div class="pr-0 py-0" onclick="window.location=`{{ url_for('actions_get_one', id=item.id) }}`">
+        <span>{{ item.name }}</span>
+        <a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.id) }}">Poista</a>
+        <span class="mr-1 float-right">Deadline: {{ item.due }}</span>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </div>
