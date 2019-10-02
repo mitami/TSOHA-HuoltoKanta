@@ -4,7 +4,7 @@
 <div class="p-5">
   <h3>{{ target.target_name }}</h3>
   <table class="table">
-    <tr scope="row">
+    <tr scope="row" onclick="window.location=`{{ url_for('locations_get_one', id=target.location_id) }}`">
       <th>Sijainti</th>
       <td>
         <p><a href="{{ url_for('locations_get_one', id=target.location_id) }}">{{ target.location_name }}</a></p>
