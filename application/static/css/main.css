@@ -156,6 +156,13 @@ body {
   color: white;
 }
 
+.generic-list--item-header {
+  padding: 5px;
+  background-color: #4f9400;
+  width: 80%;
+  color: white;
+}
+
 .right {
   float: right;
 }
