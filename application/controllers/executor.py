@@ -81,7 +81,7 @@ def executors_add_one():
     db.session().add(new)
     db.session().commit()
 
-    return render_template("executors/executor.html", executor = new)
+    return redirect(url_for('executors_get_one', id = new.id))
 
 @app.route("/executor/<id>/update", methods=["POST"])
 @login_required
@@ -118,3 +118,17 @@ def executors_delete_one(id):
     db.session().commit()
 
     return redirect(url_for("executors_get_all"))
+
+@app.route("/executor/<e_id>/action/<a_id>/toggle")
+@login_required
+def executors_toggle_done_from_own_list(e_id, a_id):
+    action = Action.query.get(a_id)
+    # Tarkistetaanko onko tehtävä käyttäjän oma?
+    if not action.done:
+        action.done = True
+    else:
+        action.done = False
+
+    db.session().commit()
+
+    return redirect(url_for('executors_get_one', id = e_id))
