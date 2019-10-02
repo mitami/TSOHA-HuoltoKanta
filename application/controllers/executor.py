@@ -56,7 +56,7 @@ def executors_add_one():
 
     pword = request.form.get("pword")
     name = request.form.get("name")
-    existing = Executor.query.filter_by(name = name)
+    existing = Executor.query.filter_by(name = name).first()
     if existing:
         return render_template("executors/new.html", msg = "Käyttäjänimi on jo käytössä")
 
