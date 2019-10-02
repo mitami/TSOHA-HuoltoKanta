@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="p-5">
 <h2>Sijainnit</h2>
-<a class="link-button" href="{{ url_for('locations_new') }}">Lisää uusi</a>
-<div>
-  <div class="generic-list">
+<a class="btn btn-success" href="{{ url_for('locations_new') }}">Lisää uusi</a>
+<div class="p-5">
+  <div class="list-group">
     {% for item in locations %}
-    <div class="generic-list--item">
-      <a href="{{ url_for('locations_get_one', id = item.id) }}">{{ item.name }}</a>
-    </div>
+      <a class="list-group-item list-group-item-action" href="{{ url_for('locations_get_one', id = item.id) }}">{{ item.name }}</a>
     {% endfor %}
   </div>
+</div>
 </div>
 {% endblock %}

@@ -1,13 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="p-5">
   <h2>Käyttäjät</h2>
   <a class="btn btn-success" href="{{ url_for('executors_new') }}">Lisää uusi</a>
-  <div class="list-group">
-    {% for item in executors %}
-    <a class="list-group-item list-group-item-action" href="{{ url_for('executors_get_one', id=item.id) }}">
-      {{ item.name }}  {{ item.title }}
-    </a>
-    {% endfor %}
+  <div class="p-5">
+    <div class="list-group">
+      {% for item in executors %}
+      <a class="list-group-item list-group-item-action" href="{{ url_for('executors_get_one', id=item.id) }}">
+        {{ item.name }}  {{ item.title }}
+      </a>
+      {% endfor %}
+    </div>
   </div>
+</div>
 {% endblock %}

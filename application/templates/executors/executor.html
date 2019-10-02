@@ -1,38 +1,33 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <div>
+  <div class="p-5">
     <h3>{{ executor.name }}</h3>
     <p>{{ executor.title }}</p>
-    <a class="link-button alert" href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa käyttäjän tietoja</a>
-    <a class="link-button danger" href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista käyttäjä</a>
-    <div class="executor--actions">
-      <div class="generic-list">
+    <a class="btn btn-warning" href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa käyttäjän tietoja</a>
+    <a class="btn btn-danger" href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista käyttäjä</a>
+    <div class="p-5">
         <h4>Omat tehtävät:</h4>
+        <div class="p-5">
         <p>Tehdyt: {{ amounts.done }} Tekemättömät: {{ amounts.undone }}</p>
-        <div class="list-legend">
-          <div><p>Status -värikoodit:</p></div>
-          <div class="link-button list-inline success">Tehty</div>
-          <div class="link-button list-inline alert">Tekemättä</div>
-          <div class="link-button list-inline danger">Myöhässä</div>
-        </div>
-        <div class="generic-list--row">
-          <div class="generic-list--item-header">
-            <a>Nimi:</a><span class="right">Deadline</span>
+        <div class="list-group">
+          <div class="list-group-item">
+            <span class="">Nimi:</span>
+            <span class="">Deadline</span>
+            <span class="">Status</span>
+            <span class="">X</span>
           </div>
-          <a class="link-button list-inline">Status</a>
-          <a class="link-button list-inline">X</a>
-        </div>
         {% for item in actions %}
-        <div class="generic-list--row">
-          <div class="generic-list--item">
-            <a href="{{ url_for('actions_get_one', id=item.action_id) }}">{{ item.action_name }}</a>
+        <div class="list-group-item pr-0 py-0">
+          <div class="p-0 m-0" onclick="window.location=`{{ url_for('actions_get_one', id=item.action_id) }}`">
+            <span>{{ item.action_name }}</span>
             <span class="right">{{ item.action_due }}</span>
+            <a href="{{ url_for('actions_delete_one', id=item.action_id) }}" class="btn btn-danger float-right py-0">Poista</a>
+            <a href="{{ url_for('executors_toggle_done_from_own_list', e_id=executor.id, a_id=item.action_id) }}" class="btn {{ 'btn-warning' if not item.action_done }} float-right py-0">status</a>
           </div>
-          <a href="{{ url_for('executors_toggle_done_from_own_list', e_id=executor.id, a_id=item.action_id) }}" class="link-button {{ 'alert' if not item.action_done }} list-inline">status</a>
-          <a href="{{ url_for('actions_delete_one', id=item.action_id) }}" class="link-button danger list-inline">Poista</a>
         </div>
         {% endfor %}
+        </div>
       </div>
     </div>
   </div>
