@@ -1,15 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Luo uusi sijainti</h2>
+<div class="p-5">
+  <h2>Luo uusi sijainti</h2>
 
-{% if msg %}
-<div class="error-message">
-  <p>{{ msg }}</p>
-</div>
-{% endif %}
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
+  </div>
+  {% endif %}
 
-<div class="form-container">
+  <div class="form-group p-5">
     <form method="POST", action="{{ url_for('locations_add_one') }}">
       <div class="form-field-item">
         <p>Nimi:</p>
@@ -21,8 +22,9 @@
           autofocus
         >
       </div>
-      <button>Submit</button>
+      <br>
+      <button class="btn btn-success">Submit</button>
     </form>
   </div>
-
+</div>
 {% endblock %}

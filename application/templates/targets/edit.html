@@ -1,35 +1,38 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Muokkaa {{ target.name }} -tietoja</h2>
+<div class="p-5">
+  <h2>Muokkaa {{ target.name }} -tietoja</h2>
 
-{% if msg %}
-<div class="error-message">
-  <p>{{ msg }}</p>
-</div>
-{% endif %}
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
+  </div>
+  {% endif %}
 
-<div class="form-container">
-  <form method="POST", action="{{ url_for('targets_modify_one', id=target.id) }}">
-    <div class="form-field-item">
-      <p>Nimi: </p>
-      <input
-        name="name"
-        required
-        maxlength=20
-        minlength="2"
-        autofocus
-      >
-    </div>
-    <div class="form-field-item">
-      <p>Valitse sijainti:</p>
-      <select name="location">
-        {% for item in locations %}
-        <option value="{{ item.id }}">{{ item.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <button>Submit</button>
-  </form>
+  <div class="form-group p-5">
+    <form method="POST", action="{{ url_for('targets_modify_one', id=target.id) }}">
+      <div class="form-field-item">
+        <p>Nimi: </p>
+        <input
+          name="name"
+          required
+          maxlength=20
+          minlength="2"
+          autofocus
+        >
+      </div>
+      <div class="form-field-item">
+        <p>Valitse sijainti:</p>
+        <select name="location">
+          {% for item in locations %}
+          <option value="{{ item.id }}">{{ item.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

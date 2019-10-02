@@ -1,32 +1,35 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Muokkaa {{ executor.name }} -tietoja</h2>
-{% if msg %}
-<div class="error-message">
-  <p>{{ msg }}</p>
-</div>
-{% endif %}
-<div class="form-container">
-  <form method="POST", action="{{ url_for('executors_modify_one', id=executor.id) }}">
-    <div class="form-field-item">
-      <p>Nimi: </p>
-      <input
-        name="name"
-        required
-        maxlength=20
-        autofocus
-      >
-    </div>
-    <div class="form-field-item">
-      <p>Titteli: </p>
-      <input
-        name="title"
-        required
-        maxlength=30
-      >
+<div class="p-5">
+  <h2>Muokkaa {{ executor.name }} -tietoja</h2>
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
   </div>
-    <button>Submit</button>
-  </form>
+  {% endif %}
+  <div class="form-group p-5">
+    <form method="POST", action="{{ url_for('executors_modify_one', id=executor.id) }}">
+      <div class="form-field-item">
+        <p>Nimi: </p>
+        <input
+          name="name"
+          required
+          maxlength=20
+          autofocus
+        >
+      </div>
+      <div class="form-field-item">
+        <p>Titteli: </p>
+        <input
+          name="title"
+          required
+          maxlength=30
+        >
+      </div>
+      <br>
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

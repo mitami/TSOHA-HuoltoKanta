@@ -1,48 +1,51 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Luo uusi tehtävä</h2>
-{% if msg %}
-<div class="error-message">
-  <p>{{ msg }}</p>
-</div>
-{% endif %}
-<div class="form-container">
-  <form method="POST", action="{{ url_for('actions_add_one') }}">
-    <div class="form-field-item">
-      <p>Nimi: </p>
-      <input
-        name="name"
-        required
-        maxlength=20
-        autofocus
-      >
-    </div>
-    <div class="form-field-item">
-      <p>Valitse kohde:</p>
-      <select name="target">
-        {% for item in targets %}
-        <option value="{{ item.id }}">{{ item.name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="form-field-item">
-      <p>Kuvaus: </p>
-      <textarea
-        name="desc"
-        required
-        maxlength=255
-      ></textarea>
-    </div>
-    <div class="form-field-item">
-      <p>Aikataulu: </p>
-      <input
-        name="due"
-        type="date"
-        required
-      >
-    </div>
-    <button>Submit</button>
-  </form>
+<div class="p-5">
+  <h2>Luo uusi tehtävä</h2>
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
+  </div>
+  {% endif %}
+  <div class="form-group p-5">
+    <form method="POST", action="{{ url_for('actions_add_one') }}">
+      <div class="form-field-item">
+        <p>Nimi: </p>
+        <input
+          name="name"
+          required
+          maxlength=20
+          autofocus
+        >
+      </div>
+      <div class="form-field-item">
+        <p>Valitse kohde:</p>
+        <select name="target">
+          {% for item in targets %}
+          <option value="{{ item.id }}">{{ item.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-field-item">
+        <p>Kuvaus: </p>
+        <textarea
+          name="desc"
+          required
+          maxlength=255
+        ></textarea>
+      </div>
+      <div class="form-field-item">
+        <p>Aikataulu: </p>
+        <input
+          name="due"
+          type="date"
+          required
+        >
+      </div>
+      <br>
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

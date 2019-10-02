@@ -1,39 +1,42 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Muokkaa {{ action.name }} -tietoja</h2>
-{% if msg %}
-<div class="error-message">
-  <p>{{ msg }}</p>
-</div>
-{% endif %}
-<div class="form-container">
-  <form method="POST", action="{{ url_for('actions_modify_one', id=action.id) }}">
-    <div class="form-field-item">
-      <p>Nimi: </p>
-      <input
-        name="name"
-        required
-        maxlength=20
-        autofocus
-      >
-    </div>
-    <div class="form-field-item">
-      <p>Kuvaus: </p>
-      <textarea
-        name="desc"
-        required
-        maxlength=255
-      ></textarea>
-    </div>
-    <div class="form-field-item">
-      <p>Deadline: </p>
-      <input
-        name="due"
-        type="date"
-      >
+<div class="p-5">
+  <h2>Muokkaa {{ action.name }} -tietoja</h2>
+  {% if msg %}
+  <div class="error-message">
+    <p>{{ msg }}</p>
   </div>
-    <button>Submit</button>
-  </form>
+  {% endif %}
+  <div class="form-group p-5">
+    <form method="POST", action="{{ url_for('actions_modify_one', id=action.id) }}">
+      <div class="form-field-item">
+        <p>Nimi: </p>
+        <input
+          name="name"
+          required
+          maxlength=20
+          autofocus
+        >
+      </div>
+      <div class="form-field-item">
+        <p>Kuvaus: </p>
+        <textarea
+          name="desc"
+          required
+          maxlength=255
+        ></textarea>
+      </div>
+      <div class="form-field-item">
+        <p>Deadline: </p>
+        <input
+          name="due"
+          type="date"
+        >
+      </div>
+      <br>
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
 {% endblock %}
