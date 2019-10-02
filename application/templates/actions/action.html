@@ -1,16 +1,40 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div>
+<div class="p-5">
   <h3>{{ data.action_name }}</h3>
-  <p>Kuvaus: {{ data.action_desc }}</p>
-  <p>Deadline: {{ data.action_due }}</p>
-  <p>Tehty: {{ data.action_done }}</p>
-  <p>Tehtävän kohde: <a href="{{ url_for('targets_get_one', id=data.target_id) }}">{{ data.target_name }}</a></p>
-  <p>Kohteen sijainti: <a href="{{ url_for('locations_get_one', id=data.location_id) }}">{{ data.location_name }}</a></p>
-  <p>Tehtävän tekijät: <a href="{{ url_for('executors_get_one', id=data.executor_id) }}">{{ data.executor_name }}</a></p>
-  <a class="link-button" href="{{ url_for('actions_toggle_done', id=data.action_id) }}">Merkitse Tehdyksi</a>
-  <a class="link-button alert" href="{{ url_for('actions_edit', id=data.action_id) }}">Muokkaa</a>
-  <a class="link-button danger" href="{{ url_for('actions_delete_one', id=data.action_id) }}">Poista</a>
+  <div class="p-5">
+    <table class="table">
+      <tr>
+        <th scope="row">Kuvaus</th>
+        <td>{{ data.action_desc }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Deadline</th>
+        <td>{{ data.action_due }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Tehty</th>
+        <td>{{ data.action_done }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Kohde</th>
+        <td><a href="{{ url_for('targets_get_one', id=data.target_id) }}">{{ data.target_name }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Sijainti</th>
+        <td><a href="{{ url_for('locations_get_one', id=data.location_id) }}">{{ data.location_name }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Tekijät</th>
+        <td><a href="{{ url_for('executors_get_one', id=data.executor_id) }}">{{ data.executor_name }}</td>
+      </tr>
+    </table>
+    <a class="btn btn-success" href="{{ url_for('actions_toggle_done', id=data.action_id) }}">Merkitse Tehdyksi</a>
+    <div class="float-right">
+      <a class="btn btn-warning" href="{{ url_for('actions_edit', id=data.action_id) }}">Muokkaa</a>
+      <a class="btn btn-danger" href="{{ url_for('actions_delete_one', id=data.action_id) }}">Poista</a>
+    </div>
+  </div>
 </div>
 {% endblock %}

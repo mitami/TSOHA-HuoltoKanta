@@ -21,9 +21,9 @@
         <div class="list-group-item pr-0 py-0">
           <div class="p-0 m-0" onclick="window.location=`{{ url_for('actions_get_one', id=item.action_id) }}`">
             <span>{{ item.action_name }}</span>
-            <span class="right">{{ item.action_due }}</span>
             <a href="{{ url_for('actions_delete_one', id=item.action_id) }}" class="btn btn-danger float-right py-0">Poista</a>
             <a href="{{ url_for('executors_toggle_done_from_own_list', e_id=executor.id, a_id=item.action_id) }}" class="btn {{ 'btn-warning' if not item.action_done }} float-right py-0">status</a>
+            <span class="float-right pr-1">{{ item.action_due }}</span>
           </div>
         </div>
         {% endfor %}
