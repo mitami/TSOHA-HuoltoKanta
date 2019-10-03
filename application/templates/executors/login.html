@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <div>
+  <div class="p-5">
     <h2>Kirjaudu sisään</h2>
-    <div class="form-container">
+    <div class="form-group p-5">
       <form method="POST", action="{{ url_for('user_login') }}">
         <div class="form-field-item">
           <p>Nimi: </p>
@@ -21,8 +21,11 @@
             type="password"
           >
         </div>
-        <p>{{ msg }}</p>
-        <button>Submit</button>
+        <br>
+        {% if msg %}
+        <div class="alert alert-primary">{{ msg }}</div>
+        {% endif %}
+        <button class="btn btn-success">Submit</button>
       </form>
     </div>
   </div>

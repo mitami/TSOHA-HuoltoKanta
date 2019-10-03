@@ -5,8 +5,6 @@
     HuoltoKanta pääsivu
   </p>
   {% if msg %}
-  <div class="error-message">
-    <p>{{ msg }}</p>
-  </div>
+  <div class="alert alert-primary">{{ msg }}</div>
   {% endif %}
 {% endblock %}

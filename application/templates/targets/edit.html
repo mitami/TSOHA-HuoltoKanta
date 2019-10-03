@@ -5,9 +5,7 @@
   <h2>Muokkaa {{ target.name }} -tietoja</h2>
 
   {% if msg %}
-  <div class="error-message">
-    <p>{{ msg }}</p>
-  </div>
+  <div class="alert alert-primary">{{ msg }}</div>
   {% endif %}
 
   <div class="form-group p-5">
