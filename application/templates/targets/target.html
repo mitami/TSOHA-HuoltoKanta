@@ -33,8 +33,6 @@
   </a>
   {% endif %}
   <div class="p-5">
-  </div>
-  <div class="target--action-info">
     <h4>{{ target.target_name }} -liittyvät Tehtävät:</h4>
     <div class="target--individual-action">
       <table class="table">
@@ -53,7 +51,14 @@
           </td>
           <td>{{ item.action_due }}</td>
           <td>{{ item.action_desc }}</td>
-          <td>{{ item.action_done }}</td>
+          <td>
+            <a
+              class="btn {{ 'btn-success' if item.action_done else 'btn-warning' }} py-0"
+              href="{{ url_for('targets_toggle_done_from_own_list', t_id=target.target_id, a_id=item.action_id) }}"
+            >
+                {{ 'TEHTY' if item.action_done else 'KESKEN' }}
+            </a>
+          </td>
         </tr>
       {% endfor %}
       </table>

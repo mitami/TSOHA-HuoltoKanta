@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from application import app, db
 from application.models.executor import Executor
 from application.models.target import Target
+from application.models.action import Action
 from application.models.location import Location
 from application.utils.constants import msg_only_admin
 
@@ -93,3 +94,17 @@ def targets_delete_one(id):
     db.session().commit()
 
     return redirect(url_for("targets_get_all"))
+
+@app.route("/target/<t_id>/action/<a_id>/toggle")
+@login_required
+def targets_toggle_done_from_own_list(t_id, a_id):
+    action = Action.query.get(a_id)
+    # Tarkistetaanko onko tehtävä käyttäjän oma?
+    if not action.done:
+        action.done = True
+    else:
+        action.done = False
+
+    db.session().commit()
+
+    return redirect(url_for('targets_get_one', id = t_id))
