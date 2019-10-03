@@ -11,8 +11,10 @@
       </td>
     </tr>
   </table>
+  {% if current_user and current_user.is_admin %}
   <a class="btn btn-warning" href="{{ url_for('targets_edit', id=target.target_id) }}">Muokkaa</a>
   <a class="btn btn-danger" href="{{ url_for('targets_delete_one', id=target.target_id) }}">Poista</a>
+  {% endif %}
   <div class="p-5">
   </div>
   <div class="target--action-info">

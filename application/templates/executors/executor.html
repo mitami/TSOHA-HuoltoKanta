@@ -7,27 +7,34 @@
     <a class="btn btn-warning" href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa käyttäjän tietoja</a>
     <a class="btn btn-danger" href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista käyttäjä</a>
     <div class="p-5">
-        <h4>Omat tehtävät:</h4>
-        <div class="p-5">
+      <h4>Omat tehtävät:</h4>
+      <div class="p-5">
         <p>Tehdyt: {{ amounts.done }} Tekemättömät: {{ amounts.undone }}</p>
-        <div class="list-group">
-          <div class="list-group-item">
-            <span class="">Nimi:</span>
-            <span class="">Deadline</span>
-            <span class="">Status</span>
-            <span class="">X</span>
-          </div>
+        <table class="table">
+          <tr>
+            <th>Nimi</th>
+            <th>Deadline</th>
+            <th>Kuvaus</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
         {% for item in actions %}
-        <div class="list-group-item pr-0 py-0">
-          <div class="p-0 m-0" onclick="window.location=`{{ url_for('actions_get_one', id=item.action_id) }}`">
-            <span>{{ item.action_name }}</span>
-            <a href="{{ url_for('actions_delete_one', id=item.action_id) }}" class="btn btn-danger float-right py-0">Poista</a>
-            <a href="{{ url_for('executors_toggle_done_from_own_list', e_id=executor.id, a_id=item.action_id) }}" class="btn {{ 'btn-warning' if not item.action_done }} float-right py-0">status</a>
-            <span class="float-right pr-1">{{ item.action_due }}</span>
-          </div>
-        </div>
+          <tr onclick="window.location=`{{ url_for('actions_get_one', id=item.action_id) }}`">
+            <td><a href="{{ url_for('actions_get_one', id=item.action_id) }}">{{ item.action_name }}</a></td>
+            <td>{{ item.action_due }}</td>
+            <td>{{ item.action_desc }}</td>
+            <td>
+              <a
+                class="btn {{ 'btn-success' if item.action_done else 'btn-warning' }} py-0"
+                href="{{ url_for('executors_toggle_done_from_own_list', e_id=executor.id, a_id=item.action_id, ) }}"
+              >
+                {{ 'TEHTY' if item.action_done else 'KESKEN' }}
+              </a>
+            </td>
+            <td><a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.action_id) }}">POISTA</a></td>
+          </tr>
         {% endfor %}
-        </div>
+        </table>
       </div>
     </div>
   </div>

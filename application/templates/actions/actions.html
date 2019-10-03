@@ -4,16 +4,25 @@
 <div class="m-5">
   <h2>Toimenpiteet</h2>
   <a class="btn btn-success" href="{{ url_for('actions_new') }}">Lisää uusi</a>
-  <div class="list-group m-5">
-    {% for item in actions %}
-    <div class="list-group-item pr-0 py-0">
-      <div class="pr-0 py-0" onclick="window.location=`{{ url_for('actions_get_one', id=item.id) }}`">
-        <span>{{ item.name }}</span>
-        <a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.id) }}">Poista</a>
-        <span class="mr-1 float-right">Deadline: {{ item.due }}</span>
-      </div>
-    </div>
-    {% endfor %}
+  <div class="p-5">
+    <table class="table">
+        <tr>
+          <th>Nimi</th>
+          <th>Deadline</th>
+          <th>Kuvaus</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      {% for item in actions %}
+        <tr onclick="window.location=`{{ url_for('actions_get_one', id=item.id) }}`">
+          <td><a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a></td>
+          <td>{{ item.due }}</td>
+          <td>{{ item.desc }}</td>
+          <td>{{ item.done }}</td>
+          <td><a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.id) }}">Poista</a></td>
+        </tr>
+      {% endfor %}
+      </table>
   </div>
 </div>
 {% endblock %}
