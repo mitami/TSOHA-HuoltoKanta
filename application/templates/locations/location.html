@@ -3,7 +3,7 @@
 {% block body %}
 <div class="p-5">
   <h3>{{ location.name }}</h3>
-  {% if current_user and current_user.is_admin %}
+  {% if current_user and current_user.get_admin %}
   <a class="btn btn-warning" href="{{ url_for('locations_edit', id=location.id) }}">Muokkaa</a>
   <a class="btn btn-danger" href="{{ url_for('locations_delete_one', id=location.id) }}">Poista</a>
   {% endif %}

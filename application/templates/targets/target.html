@@ -18,7 +18,7 @@
       </td>
     </tr>
   </table>
-  {% if current_user and current_user.is_admin %}
+  {% if current_user and current_user.get_admin %}
   <a 
     class="btn btn-warning"
     href="{{ url_for('targets_edit', id=target.target_id) }}"
