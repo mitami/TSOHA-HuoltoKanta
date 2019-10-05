@@ -5,6 +5,8 @@ from application.models.executor import Executor
 from application.models.action import Action
 from application.utils.constants import msg_only_admin
 
+import datetime
+
 @app.route("/executors")
 def executors_get_all():
     return render_template(
@@ -31,6 +33,10 @@ def executors_edit(id):
 def executors_get_one(id):
     user = Executor.query.get(id)
     actions = Executor.get_all_executors_tasks(id)
+    for item in actions:
+        print("<<<<<---------------TÄSSÄ------------>>>>>>>>>>")
+        print(item["action_due"])
+        print(isinstance(item["action_due"], datetime.date))
     amounts = {}
     undone = Executor.get_amount_of_executors_undone_tasks(id)
     done = Executor.get_amount_of_executors_done_tasks(id)

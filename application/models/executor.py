@@ -4,6 +4,7 @@ from application.models.action import Action
 
 from application.utils.constants import boolean_converter
 from sqlalchemy import text
+from datetime import datetime
 
 association_table = db.Table('executor_action', Base.metadata,
     db.Column('executor_id', db.Integer, db.ForeignKey('executor.id')),
@@ -42,7 +43,7 @@ class Executor(Base):
             response.append({"action_id": row[0],
                             "action_name": row[1],
                             "action_desc": row[2],
-                            "action_due": row[3],
+                            "action_due": datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S.%f'),
                             "action_done": row[4]})
 
         return response

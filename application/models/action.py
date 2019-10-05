@@ -2,6 +2,7 @@ from application import db
 from application.models.base import Base
 
 from sqlalchemy import text
+from datetime import datetime
 
 class Action(Base):
     name = db.Column(db.String(255))
@@ -39,7 +40,7 @@ class Action(Base):
                             "action_name": row[1],
                             "action_desc": row[2],
                             "action_done": row[3],
-                            "action_due": row[4],
+                            "action_due": datetime.strptime(row[4], '%Y-%m-%d %H:%M:%S.%f'),
                             "target_id": row[5],
                             "target_name": row[6],
                             "location_id": row[7],

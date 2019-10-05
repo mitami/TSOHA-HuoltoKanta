@@ -49,7 +49,7 @@
               {{ item.action_name }}
             </a>
           </td>
-          <td>{{ item.action_due }}</td>
+          <td>{{ item.action_due.strftime('%d.%m.%Y') }}</td>
           <td>{{ item.action_desc }}</td>
           <td>
             <a

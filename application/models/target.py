@@ -2,6 +2,7 @@ from application import db
 from application.models.base import Base
 
 from sqlalchemy.sql import text
+from datetime import datetime
 
 class Target(Base):
     name = db.Column(db.String(50))
@@ -45,7 +46,7 @@ class Target(Base):
                             "location_id": row[2],
                             "location_name": row[3],
                             "action_name": row[4],
-                            "action_due": row[5],
+                            "action_due": datetime.strptime(row[5], '%Y-%m-%d %H:%M:%S.%f'),
                             "action_done": row[6]})
 
         return response
@@ -63,7 +64,7 @@ class Target(Base):
             response.append({"action_id": row[0],
                             "action_name": row[1],
                             "action_desc": row[2],
-                            "action_due": row[3],
+                            "action_due": datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S.%f'),
                             "action_done": row[4]})
 
         return response

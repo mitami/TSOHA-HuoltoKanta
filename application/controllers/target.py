@@ -22,10 +22,6 @@ def targets_get_one(id):
     #Tarkista vastaus, jos tyhjä, palauta viesti.
     db.session().commit()
 
-    for item in target:
-        print("<<----- FIND TARGET AND ITS LOCATION ----->>")
-        print(item)
-
     return render_template("targets/target.html", target=target[0], actions=actions)
 
 @app.route("/targets/new")
