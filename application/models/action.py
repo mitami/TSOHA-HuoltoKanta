@@ -40,7 +40,7 @@ class Action(Base):
                             "action_name": row[1],
                             "action_desc": row[2],
                             "action_done": row[3],
-                            "action_due": datetime.strptime(row[4], '%Y-%m-%d %H:%M:%S.%f'),
+                            "action_due": datetime.strptime(row[4], '%Y-%m-%d %H:%M:%S.%f') if isinstance(row[4], str) else row[4],
                             "target_id": row[5],
                             "target_name": row[6],
                             "location_id": row[7],

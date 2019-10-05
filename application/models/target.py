@@ -46,7 +46,7 @@ class Target(Base):
                             "location_id": row[2],
                             "location_name": row[3],
                             "action_name": row[4],
-                            "action_due": datetime.strptime(row[5], '%Y-%m-%d %H:%M:%S.%f'),
+                            "action_due": datetime.strptime(row[5], '%Y-%m-%d %H:%M:%S.%f') if isinstance(row[5], str) else row[5],
                             "action_done": row[6]})
 
         return response
