@@ -64,7 +64,7 @@ class Target(Base):
             response.append({"action_id": row[0],
                             "action_name": row[1],
                             "action_desc": row[2],
-                            "action_due": datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S.%f'),
+                            "action_due": datetime.strptime(row[3], '%Y-%m-%d %H:%M:%S.%f') if isinstance(row[3], str) else row[3],
                             "action_done": row[4]})
 
         return response
