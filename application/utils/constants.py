@@ -1,6 +1,8 @@
 import os
 
 msg_only_admin = "Vain Admin voi suorittaa tämän toiminnon!"
+msg_loc_name_legth = "Sijainnin nimen tulee olla alle 30 merkkiä pitkä!"
+msg_loc_no_name = "Sijainnin kenttä 'Nimi' on pakollinen!"
 
 def boolean_converter(value):
     if os.environ.get("HEROKU"):

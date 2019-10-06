@@ -4,7 +4,7 @@ from application import app, db
 from application.models.executor import Executor
 from application.models.location import Location
 from application.models.target import Target
-from application.utils.constants import msg_only_admin
+from application.utils.constants import msg_only_admin, msg_loc_name_legth, msg_loc_no_name
 
 @app.route("/locations")
 @login_required
@@ -50,13 +50,20 @@ def locations_add_one():
         return render_template("index.html", msg=msg_only_admin)
 
     name = request.form.get("name")
-    if name:
+    messages = []
+    if not name:
+        messages.append(msg_loc_no_name)
+        return render_template("locations/new.html",  messages=messages)
+    
+    if len(name) <= 30:
         location = Location(name)
         db.session().add(location)
         db.session().commit()
-        return render_template("locations/location.html", location=location)
+        return render_template("locations/location.html",
+                                location=location)
 
-    return render_template("locations/edit.html", msg="Sijaintia lisätessä kenttä 'Nimi' on pakollinen!")
+    messages.append(msg_loc_name_legth)
+    return render_template("locations/new.html",  messages=messages)
 
 @app.route("/location/<id>/update", methods=["POST"])
 @login_required
@@ -65,10 +72,24 @@ def locations_modify_one(id):
         return render_template("index.html", msg=msg_only_admin)
 
     name = request.form.get("name")
-    if name:
-        loc = Location.query.get(id)
+    loc = Location.query.get(id)
+
+    messages = []
+    if not name:
+        messages.append(msg_loc_no_name)
+        return render_template("locations/edit.html",
+                                location=loc,
+                                messages=messages)
+    
+    if len(name) <= 30:
         loc.name = name
         db.session().commit()
         return render_template("locations/location.html", location=loc)
-
+    else:
+        targets = Target.query.filter_by(location_id = id)
+        messages.append(msg_loc_name_legth)
+        return render_template("locations/location.html",
+                                location=loc,
+                                targets=targets,
+                                messages=messages)
     

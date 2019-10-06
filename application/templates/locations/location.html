@@ -7,6 +7,13 @@
   <a class="btn btn-warning" href="{{ url_for('locations_edit', id=location.id) }}">Muokkaa</a>
   <a class="btn btn-danger" href="{{ url_for('locations_delete_one', id=location.id) }}">Poista</a>
   {% endif %}
+  {% if messages %}
+  <div class="mt-5">
+  {% for msg in messages %}
+    <div class="alert alert-primary">{{ msg }}</div>
+  {% endfor %}
+  </div>
+  {% endif %}
   <div class="p-5">
     <h4>Kohteet Sijainnissa {{ location.name }}</h4>
     <div class="list-group">
