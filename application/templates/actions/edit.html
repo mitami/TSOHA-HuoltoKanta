@@ -12,6 +12,7 @@
         <p>Nimi: </p>
         <input
           name="name"
+          value="{{ action.name }}"
           required
           maxlength=20
           autofocus
@@ -23,7 +24,7 @@
           name="desc"
           required
           maxlength=255
-        ></textarea>
+        >{{ action.desc }}</textarea>
       </div>
       <div class="form-field-item">
         <p>Deadline: </p>
