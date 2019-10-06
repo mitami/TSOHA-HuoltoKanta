@@ -18,7 +18,14 @@
           <td><a href="{{ url_for('actions_get_one', id=item.id) }}">{{ item.name }}</a></td>
           <td>{{ item.due.strftime('%d.%m.%Y') }}</td>
           <td>{{ item.desc }}</td>
-          <td>{{ item.done }}</td>
+          <td>
+            <a
+              class="btn {{ 'btn-success' if item.done else 'btn-warning' }} py-0"
+              href="{{ url_for('actions_toggle_from_list', id=item.id) }}"
+            >
+              {{ 'TEHTY' if item.done else 'KESKEN'}}
+            </a>
+          </td>
           <td><a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.id) }}">Poista</a></td>
         </tr>
       {% endfor %}

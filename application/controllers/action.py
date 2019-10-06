@@ -68,6 +68,19 @@ def actions_toggle_done(id):
 
     return redirect(url_for("actions_get_one", id=action.id))
 
+@app.route("/actions/<id>/toggle")
+@login_required
+def actions_toggle_from_list(id):
+    action = Action.query.get(id)
+    if not action.done:
+        action.done = True
+    else:
+        action.done = False
+
+    db.session().commit()
+
+    return redirect(url_for("actions_get_all"))
+
 @app.route("/actions/<id>/edit")
 @login_required
 def actions_edit(id):
