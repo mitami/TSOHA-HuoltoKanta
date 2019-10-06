@@ -55,7 +55,7 @@ def locations_add_one():
         messages.append(msg_loc_no_name)
         return render_template("locations/new.html",  messages=messages)
     
-    if len(name) <= 30:
+    if len(name) <= 30 and len(name) > 1:
         location = Location(name)
         db.session().add(location)
         db.session().commit()
@@ -81,7 +81,7 @@ def locations_modify_one(id):
                                 location=loc,
                                 messages=messages)
     
-    if len(name) <= 30:
+    if len(name) <= 30 and len(name) > 1:
         loc.name = name
         db.session().commit()
         return render_template("locations/location.html", location=loc)
