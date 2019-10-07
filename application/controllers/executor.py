@@ -33,10 +33,7 @@ def executors_edit(id):
 def executors_get_one(id):
     user = Executor.query.get(id)
     actions = Executor.get_all_executors_tasks(id)
-    for item in actions:
-        print("<<<<<---------------TÄSSÄ------------>>>>>>>>>>")
-        print(item["action_due"])
-        print(isinstance(item["action_due"], datetime.date))
+
     amounts = {}
     undone = Executor.get_amount_of_executors_undone_tasks(id)
     done = Executor.get_amount_of_executors_done_tasks(id)
@@ -56,9 +53,6 @@ def executors_add_one():
     users = db.session.query(Executor).count()
     if users != 0 and not current_user.is_authenticated:
         return render_template("index.html", msg=msg_only_admin)
-
-    print("AMOUNT OF USERS: ")
-    print(users)
 
     pword = request.form.get("pword")
     name = request.form.get("name")

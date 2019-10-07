@@ -12,9 +12,6 @@ import datetime
 @login_required
 def actions_get_all():
     actions = Action.query.all()
-    for item in actions:
-        print(item.due)
-        print(isinstance(item.due, datetime.date))
 
     return render_template("actions/actions.html", actions = actions)
 
