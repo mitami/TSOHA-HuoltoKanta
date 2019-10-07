@@ -5,6 +5,7 @@ from application.models.executor import Executor
 from application.models.action import Action
 from application.utils.constants import msg_only_admin
 
+from application.forms.executor_form import ExecutorForm
 import datetime
 
 @app.route("/executors")
@@ -16,7 +17,7 @@ def executors_get_all():
 
 @app.route("/executors/new")
 def executors_new():
-    return render_template("executors/new.html")
+    return render_template("executors/new.html", form=ExecutorForm())
 
 @app.route("/executor/<id>/edit")
 @login_required
@@ -26,7 +27,9 @@ def executors_edit(id):
     item = Executor.query.get(id)
     db.session().commit()
 
-    return render_template("executors/edit.html", executor = item)
+    return render_template("executors/edit.html",
+                            executor = item,
+                            form=ExecutorForm())
 
 @app.route("/executor/<id>")
 @login_required
@@ -60,14 +63,13 @@ def executors_add_one():
     if existing:
         return render_template("executors/new.html", msg = "Käyttäjänimi on jo käytössä")
 
-    title = request.form.get("title")
-    if len(pword) < 4 or len(pword) > 20:
-        return render_template("executors/new.html", msg = "Salasanan pituus oltava 4-20 merkkiä!")
-    if len(name) < 2 or len(name) > 20:
-        return render_template("executors/new.html", msg = "Käyttäjänimen pituus oltava 2-20 merkkiä!")
-    if len(title) > 30:
-        return render_template("executors/new.html", msg = "Tittelin maksimipituus on 30 merkkiä!")
 
+    form = ExecutorForm(request.form)
+    if not form.validate():
+        return render_template("executors/new.html", form=form)
+
+    title = request.form.get("title")
+    
     # hash password here
     admin = False
     new = Executor(name, title, pword, admin)
@@ -90,10 +92,9 @@ def executors_modify_one(id):
     name = request.form.get("name")
     title = request.form.get("title")
 
-    if len(name) < 2 or len(name) > 20:
-        return render_template("executors/edit.html", executor=item, msg = "Käyttäjänimen pituus oltava 2-20 merkkiä!")
-    if len(title) > 30:
-        return render_template("executors/edit.html", executor=item, msg = "Tittelin maksimipituus on 30 merkkiä!")
+    form = ExecutorForm(request.form)
+    if not form.validate():
+        return render_template("executors/edit.html", form=form)
 
     item.name = name
     if title:

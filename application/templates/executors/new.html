@@ -10,42 +10,32 @@
   <form method="POST", action="{{ url_for('executors_add_one') }}">
     <div class="form-field-item">
       <p>Nimi:</p>
-      <input
-        name="name"
-        required
-        maxlength=20
-        minlength="2"
-        autofocus
-      >
+      {{ form.name }}
     </div>
+    {% for msg in form.name.errors %}
+      <div class="alert alert-primary">{{ msg }}</div>
+      {% endfor %}
     <div class="form-field-item">
       <p>Titteli:</p>
-      <input
-        name="title"
-        required
-        maxlength=30
-      >
+      {{ form.title }}
     </div>
+    {% for msg in form.title.errors %}
+      <div class="alert alert-primary">{{ msg }}</div>
+      {% endfor %}
     <div class="form-field-item">
       <p>Salasana:</p>
-      <input
-        name="pword"
-        required
-        maxlength="20"
-        minlength="4"
-        type="password"
-      >
+      {{ form.pword }}
     </div>
+    {% for msg in form.pword.errors %}
+      <div class="alert alert-primary">{{ msg }}</div>
+      {% endfor %}
     <div class="form-field-item">
       <p>Salasana uudelleen:</p>
-      <input
-        name="pwordagain"
-        required
-        maxlength="20"
-        minlength="4"
-        type="password"
-      >
+      {{ form.pwordagain }}
     </div>
+    {% for msg in form.pwordagain.errors %}
+      <div class="alert alert-primary">{{ msg }}</div>
+      {% endfor %}
     <br>
     <button class="btn btn-success">Submit</button>
   </form>

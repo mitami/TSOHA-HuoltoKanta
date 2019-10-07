@@ -2,6 +2,11 @@ import os
 
 msg_only_admin = "Vain Admin voi suorittaa tämän toiminnon!"
 
+msg_executor_name_length = "Käyttäjän nimen tulee olla 2-20 merkkiä pitkä!"
+msg_executor_title_length = "Käyttäjän tittelin tulee olla enintään 30 merkkiä pitkä!"
+msg_password_match = "Salasanojen on täsmättävä!"
+msg_password_length = "Salasanan on oltava 4-20 merkkiä pitkä!"
+
 msg_loc_name_length = "Sijainnin nimen tulee olla 2 - 30 merkkiä pitkä!"
 msg_loc_no_name = "Sijainnin kenttä 'Nimi' on pakollinen!"
 
