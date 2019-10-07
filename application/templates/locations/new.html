@@ -16,13 +16,10 @@
     <form method="POST", action="{{ url_for('locations_add_one') }}">
       <div class="form-field-item">
         <p>Nimi:</p>
-        <input
-          name="name"
-          required
-          maxlength=30
-          minlength="2"
-          autofocus
-        >
+        {{ form.name }}
+        {% for msg in form.name.errors %}
+        <div class="alert alert-primary">{{ msg }}</div>
+        {% endfor %}
       </div>
       <br>
       <button class="btn btn-success">Submit</button>

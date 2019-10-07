@@ -5,7 +5,7 @@ from application.models.executor import Executor
 from application.models.target import Target
 from application.models.action import Action
 from application.models.location import Location
-from application.utils.constants import msg_only_admin
+from application.utils.constants import msg_only_admin, msg_target_no_name, msg_target_name_length, msg_target_no_loc
 
 
 @app.route("/targets")
@@ -26,15 +26,16 @@ def targets_get_one(id):
 
 @app.route("/targets/new")
 @login_required
-def targets_new():
+def targets_new(messages=[]):
     locations = Location.query.all()
     db.session().commit()
-    return render_template("targets/new.html", locations=locations)
+    return render_template("targets/new.html", locations=locations, messages=messages)
 
 @app.route("/targets/", methods=["POST"])
 @login_required
 def targets_add_one():
-    #Tarkista, että käyttäjä on admin?
+    #Tarkista, että käyttäjä on admin
+    messages = []
     if not current_user.get_admin():
         return render_template("index.html", msg=msg_only_admin)
 
@@ -44,6 +45,17 @@ def targets_add_one():
     #luo kohde ilman sijaintia, ja hoida sijainnittoman kohteen käsittely jotenkin
     name = request.form.get("name")
     location = request.form.get("location")
+
+    if not name:
+        messages.append(msg_target_no_name)
+    if not location:
+        messages.append(msg_target_no_loc)
+    if len(name) > 20 or len(name) < 2:
+        messages.append(msg_target_name_length)
+
+    if messages:
+        return redirect(url_for('targets_new', messages=messages))
+
     new_target = Target(name, location)
     #new_target.location_id = location
     db.session().add(new_target)
@@ -53,13 +65,16 @@ def targets_add_one():
 
 @app.route("/targets/<id>/edit")
 @login_required
-def targets_edit(id):
+def targets_edit(id, messages=[]):
     locations = Location.query.all()
     
     target = Target.query.get(id)
     db.session().commit()
 
-    return render_template("targets/edit.html", target = target, locations=locations)
+    return render_template("targets/edit.html",
+                            target=target,
+                            locations=locations,
+                            messages=messages)
 
 @app.route("/targets/<id>/update", methods=["POST"])
 @login_required
@@ -72,10 +87,23 @@ def targets_modify_one(id):
     #Nimen validointi
     name = request.form.get("name")
     location = request.form.get("location")
-    if name:
-        target.name = name
-    if location:
-        target.location_id = location
+    messages = []
+    if not name:
+        messages.append(msg_target_no_name)
+    if not location:
+        messages.append(msg_target_no_loc)
+
+    if len(name) > 20 or len(name) < 2:
+        messages.append(msg_target_name_length)
+
+    if messages:
+        db.session().commit()
+        return redirect(url_for("targets_edit", id=id, messages=messages))
+
+    target.name = name
+    target.location_id = location
+
+
     db.session().commit()
 
     return redirect(url_for("targets_get_one", id = target.id))

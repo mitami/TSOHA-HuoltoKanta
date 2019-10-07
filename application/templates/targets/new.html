@@ -4,8 +4,12 @@
 <div class="p-5">
   <h2>Lisää uusi Kohde</h2>
 
-  {% if msg %}
-  <div class="alert alert-primary">{{ msg }}</div>
+  {% if messages %}
+  <div class="mt-5">
+  {% for msg in messages %}
+    <div class="alert alert-primary">{{ msg }}</div>
+  {% endfor %}
+  </div>
   {% endif %}
 
   <div class="form-group p-5">

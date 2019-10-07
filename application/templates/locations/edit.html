@@ -14,15 +14,11 @@
     <form method="POST", action="{{ url_for('locations_modify_one', id=location.id) }}">
       <div class="form-field-item">
         <p>Nimi: </p>
-        <input
-          name="name"
-          value="{{ location.name }}"
-          required
-          maxlength=30
-          minlength="2"
-          autofocus
-        >
+        {{ form.name }}
       </div>
+      {% for msg in form.name.errors %}
+      <div class="alert alert-primary">{{ msg }}</div>
+      {% endfor %}
       <br>
       <button class="btn btn-success">Submit</button>
     </form>
