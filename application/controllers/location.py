@@ -4,7 +4,7 @@ from application import app, db
 from application.models.executor import Executor
 from application.models.location import Location
 from application.models.target import Target
-from application.utils.constants import msg_only_admin, msg_loc_name_legth, msg_loc_no_name
+from application.utils.constants import msg_only_admin
 from application.forms.location_form import LocationForm
 
 @app.route("/locations")

@@ -5,7 +5,8 @@ from application.models.executor import Executor
 from application.models.target import Target
 from application.models.action import Action
 from application.models.location import Location
-from application.utils.constants import msg_only_admin, msg_target_no_name, msg_target_name_length, msg_target_no_loc
+from application.utils.constants import msg_only_admin, msg_target_no_loc
+from application.forms.target_form import TargetForm
 
 
 @app.route("/targets")
@@ -27,41 +28,14 @@ def targets_get_one(id):
 @app.route("/targets/new")
 @login_required
 def targets_new(messages=[]):
-    locations = Location.query.all()
-    db.session().commit()
-    return render_template("targets/new.html", locations=locations, messages=messages)
-
-@app.route("/targets/", methods=["POST"])
-@login_required
-def targets_add_one():
-    #Tarkista, että käyttäjä on admin
-    messages = []
-    if not current_user.get_admin():
-        return render_template("index.html", msg=msg_only_admin)
-
-    #Tässä vaiheessa varmaankin täytyy tehdä linkitys Kohteen ja Sijainnin
-    #välille.
-    #Älä luo kohdetta, jos tietokannassa ei ole yhtään sijaintia TAI
-    #luo kohde ilman sijaintia, ja hoida sijainnittoman kohteen käsittely jotenkin
-    name = request.form.get("name")
-    location = request.form.get("location")
-
-    if not name:
-        messages.append(msg_target_no_name)
-    if not location:
-        messages.append(msg_target_no_loc)
-    if len(name) > 20 or len(name) < 2:
-        messages.append(msg_target_name_length)
-
-    if messages:
-        return redirect(url_for('targets_new', messages=messages))
-
-    new_target = Target(name, location)
-    #new_target.location_id = location
-    db.session().add(new_target)
     db.session().commit()
 
-    return redirect(url_for("targets_get_one", id=new_target.id))
+    form = TargetForm()
+
+    return render_template("targets/new.html",
+                            messages=messages,
+                            locations=Location.query.all(),
+                            form=form)
 
 @app.route("/targets/<id>/edit")
 @login_required
@@ -71,42 +45,13 @@ def targets_edit(id, messages=[]):
     target = Target.query.get(id)
     db.session().commit()
 
+    form = TargetForm()
+
     return render_template("targets/edit.html",
                             target=target,
                             locations=locations,
-                            messages=messages)
-
-@app.route("/targets/<id>/update", methods=["POST"])
-@login_required
-def targets_modify_one(id):
-    if not current_user.get_admin():
-        return render_template("index.html", msg=msg_only_admin)
-
-    target = Target.query.get(id)
-
-    #Nimen validointi
-    name = request.form.get("name")
-    location = request.form.get("location")
-    messages = []
-    if not name:
-        messages.append(msg_target_no_name)
-    if not location:
-        messages.append(msg_target_no_loc)
-
-    if len(name) > 20 or len(name) < 2:
-        messages.append(msg_target_name_length)
-
-    if messages:
-        db.session().commit()
-        return redirect(url_for("targets_edit", id=id, messages=messages))
-
-    target.name = name
-    target.location_id = location
-
-
-    db.session().commit()
-
-    return redirect(url_for("targets_get_one", id = target.id))
+                            messages=messages,
+                            form=form)
 
 @app.route("/targets/<id>/delete")
 @login_required
@@ -132,3 +77,63 @@ def targets_toggle_done_from_own_list(t_id, a_id):
     db.session().commit()
 
     return redirect(url_for('targets_get_one', id = t_id))
+
+@app.route("/targets/", methods=["POST"])
+@login_required
+def targets_add_one():
+    #Tarkista, että käyttäjä on admin
+    messages = []
+    if not current_user.get_admin():
+        return render_template("index.html", msg=msg_only_admin)
+
+    #Tässä vaiheessa varmaankin täytyy tehdä linkitys Kohteen ja Sijainnin
+    #välille.
+    #Älä luo kohdetta, jos tietokannassa ei ole yhtään sijaintia TAI
+    #luo kohde ilman sijaintia, ja hoida sijainnittoman kohteen käsittely jotenkin
+    name = request.form.get("name")
+    location = request.form.get("location")
+
+    form = TargetForm(request.form)
+    if not request.form.get("location"):
+        messages.append(msg_target_no_loc)
+    if not form.validate() or messages:
+        locations = Location.query.all()
+        return render_template("targets/new.html", form=form, locations=locations)
+
+
+    new_target = Target(name, location)
+    #new_target.location_id = location
+    db.session().add(new_target)
+    db.session().commit()
+
+    return redirect(url_for("targets_get_one", id=new_target.id))
+
+@app.route("/targets/<id>/update", methods=["POST"])
+@login_required
+def targets_modify_one(id):
+    if not current_user.get_admin():
+        return render_template("index.html", msg=msg_only_admin)
+
+    form = TargetForm(request.form)
+    messages = []
+    if not request.form.get("location"):
+        messages.append(msg_target_no_loc)
+    if not form.validate() or messages:
+        return render_template("targets/edit.html",
+                                target=Target.query.get(id),
+                                locations=Location.query.all(),
+                                form=form,
+                                messages=messages)
+    
+    target = Target.query.get(id)
+
+    name = request.form.get("name")
+    location = request.form.get("location")
+    messages = []
+
+    target.name = name
+    target.location_id = location
+
+    db.session().commit()
+
+    return redirect(url_for("targets_get_one", id = target.id))
