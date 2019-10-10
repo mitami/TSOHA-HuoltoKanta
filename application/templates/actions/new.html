@@ -13,6 +13,18 @@
         {{ form.name }}
       </div>
       <div class="form-field-item">
+        <p>Valitse tekijät:</p>
+        <select name="executors" multiple>
+          {% for item in executors %}
+          <option
+            value="{{ item.id }}"
+          >
+            {{ item.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-field-item">
         <p>Valitse kohde:</p>
         <select name="target">
           {% for item in targets %}

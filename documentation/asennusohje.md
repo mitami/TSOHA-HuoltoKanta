@@ -7,7 +7,7 @@
 
 * Sovellus vaatii SQLite -tietokannan toimiakseen oikein paikallisesti.
 
-  * Vaihtoehtoisesti muuttamalla tietokannan asetuksia \_\_init__.py -tiedostosta
+  * Vaihtoehtoisesti muuttamalla tietokannan asetuksia \_\_init\_\_.py -tiedostosta
   sovellusta voi käyttää myös PSQL -kannan kanssa.
 
 * Asenna riippuvuudet:
@@ -21,6 +21,7 @@
   `source venv/bin/activate`
 
   `python3 run.py`
+
 ----------
 
 ## Heroku

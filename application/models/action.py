@@ -24,7 +24,7 @@ class Action(Base):
 
     @staticmethod
     def find_one_with_target_and_user(id):
-        #Voiko SQL -kyselyä optimoida?
+        #Käyttäjät pitää saada listaksi. array_agg() ei toimi SQLitellä
         stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, executor.id, executor.name"
                     " FROM Action JOIN executor_action ON executor_action.action_id = action.id"
                     " JOIN Executor ON Executor.id = executor_action.executor_id"

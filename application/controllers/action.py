@@ -23,6 +23,11 @@ def actions_get_one(id):
     #merkitty/kuka tehtävän on luonut.
     data = Action.find_one_with_target_and_user(id)
     #action = Action.query.get(id)
+    print("<<<<<---------------Käyttäjä(t)--------->>>>>>>>>>>>>>>")
+    print(data[0])
+    for item in data:
+        print(item)
+        print("-------------")
 
     return render_template("actions/action.html", data = data[0])
 
@@ -30,9 +35,13 @@ def actions_get_one(id):
 @login_required
 def actions_new():
     targets = Target.query.all()
+    executors = Executor.query.all()
 
     form = ActionForm()
-    return render_template("actions/new.html", targets=targets, form=form)
+    return render_template("actions/new.html",
+                           targets=targets,
+                           form=form,
+                           executors=executors)
 
 @app.route("/actions/<id>/done")
 @login_required
@@ -66,12 +75,14 @@ def actions_edit(id):
     action = Action.query.get(id)
     db.session().commit()
     targets = Target.query.all()
+    executors = Executor.query.all()
 
     form = ActionForm(obj=action)
 
     return render_template("actions/edit.html",
                             action=action,
                             targets=targets,
+                            executors=executors,
                             form=form)
 
 @app.route("/actions/<id>/delete")
@@ -120,6 +131,7 @@ def actions_modify_one(id):
 @login_required
 def actions_add_one():
     executor = Executor.query.get(current_user.id)
+    executors = request.form.getlist("executors")
     name = request.form.get("name")
     desc = request.form.get("desc")
     due = request.form.get("due")
@@ -139,7 +151,14 @@ def actions_add_one():
     new = Action(name, desc, due, done, target_id)
 
     #Lisätään Toimenpide Käyttäjän toimenpiteet -listaan
-    executor.actions.append(new)
+    #executor.actions.append(new)
+    db.session.add(new)
+    db.session().flush()
+
+    action = Action.query.get(new.id)
+    executors = [Executor.query.get(e) for e in executors]
+
+    action.executors = executors
     db.session().commit()
 
     return redirect(url_for("actions_get_one", id = new.id))
