@@ -67,7 +67,7 @@ def actions_edit(id):
     db.session().commit()
     targets = Target.query.all()
 
-    form = ActionForm()
+    form = ActionForm(obj=action)
 
     return render_template("actions/edit.html",
                             action=action,
