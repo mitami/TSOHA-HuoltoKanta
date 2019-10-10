@@ -27,10 +27,12 @@ Käyttäjänä haluan nähdä listauksen kaikista Kohteista
 
 Käyttäjänä haluan tarkastella yksittäistä Kohdetta, ja nähdä siihen liittyvät tiedot ja Tehtävät listattuna
 
-```SELECT target.id, target.name, location.id, location.name, action.name, action.due, action.done
+```
+SELECT target.id, target.name, location.id, location.name, action.name, action.due, action.done
 FROM Target
 JOIN Location ON Location.id = target.location_id
-JOIN Action ON Action.target_id = :id```
+JOIN Action ON Action.target_id = :id
+```
 
 Käyttäjänä haluan nähdä listauksen kaikista Tehtävistä, jotka on rekisteroity minulle
 
