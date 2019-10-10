@@ -32,5 +32,6 @@ Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutet
 ### Linkkejä
 
 [Tarkempi käyttöohje](..master/documentation/ohje.md)
+
 [Käyttäjä -storyt](../master/documentation/User-storyt/Käyttäjä.md)
 
