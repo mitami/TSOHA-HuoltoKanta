@@ -11,11 +11,15 @@
   sovellusta voi käyttää myös PSQL -kannan kanssa.
 
 * Asenna riippuvuudet:
+
   `pip3 install -r requirements.txt`
 
 * Käynnistä sovellus:
+
   `cd polku/sovelluksen/juureen`
+
   `source venv/bin/activate`
+
   `python3 run.py`
 ----------
 
