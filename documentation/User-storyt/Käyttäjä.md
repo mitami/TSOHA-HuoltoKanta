@@ -7,6 +7,7 @@ Admin-käyttäjänä haluan muokata Kohteen Sijaintia sekä nimeä, poistaa Koht
 Admin käyttäjänä haluan lisätä ja poistaa ja muokata Sijainteja
 
 Admin-käyttäjänä haluan CRUD -mahdollisuuden kaikkiin tauluihin
+
 `DELETE FROM x WHERE id = y`
 
 `SELECT * FROM x WHERE id = y`
@@ -25,12 +26,14 @@ Käyttäjänä haluan nähdä listauksen kaikista Kohteista
 `SELECT * FROM Target`
 
 Käyttäjänä haluan tarkastella yksittäistä Kohdetta, ja nähdä siihen liittyvät tiedot ja Tehtävät listattuna
+
 `SELECT target.id, target.name, location.id, location.name, action.name, action.due, action.done`
 `FROM Target`
 `JOIN Location ON Location.id = target.location_id`
 `JOIN Action ON Action.target_id = :id`
 
 Käyttäjänä haluan nähdä listauksen kaikista Tehtävistä, jotka on rekisteroity minulle
+
 `SELECT action.id, action.name, action.desc, action.done, action.due, target.name, location.name, executor.name"`
 `" FROM Action JOIN executor_action ON executor_action.action_id = action.id"`
 `" JOIN Executor ON Executor.id = executor_action.executor_id"`
@@ -39,10 +42,12 @@ Käyttäjänä haluan nähdä listauksen kaikista Tehtävistä, jotka on rekiste
 `" WHERE action.id = :id`
 
 Käyttäjänä haluan luoda uusia aikataulutettuja Tehtäviä, jotka liittyvät tiettyihin Kohteisiin
+
 `INSERT INTO Actions (name, due, desc, done, target_id)`
 `VALUES ('nimi', 'pvm', 'false', '1')`
 
 Käyttäjänä haluan merkitä Tehtävän tehdyksi (tai ei-tehdyksi)
+
 `UPDATE Actions SET done = 'true/false' WHERE id = 'x'`
 
 
