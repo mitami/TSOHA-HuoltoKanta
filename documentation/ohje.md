@@ -44,3 +44,4 @@ Uuden käyttäjän luominen jakautuu myös kahteen skenaarioon:
 * Voit luoda käyttäjän [Kirjautuminen 1.](#kirjautuminen) mukaan
 
 #### 2. Tietokannassa on ainakin yksi käyttäjä
+* Luodakseen lisää käyttäjiä, on [kirjauduttava](#2-tietokannassa-on-ainakin-yksi-käyttäjä) Admin -oikeudet omaavalla käyttäjätunnuksella
