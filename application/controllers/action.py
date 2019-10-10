@@ -12,7 +12,7 @@ import datetime
 @app.route("/actions/")
 @login_required
 def actions_get_all():
-    actions = Action.query.all()
+    actions = Action.query.order_by(Action.due).all()
 
     return render_template("actions/actions.html", actions = actions)
 
