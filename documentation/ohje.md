@@ -4,7 +4,7 @@
 ### Kirjautuminen
 
 Sovellukseen kirjautuminen jakautuu kahteen skenaarioon:
-1. Tietokannassa ei ole yhtään käyttäjää
+#### 1. Tietokannassa ei ole yhtään käyttäjää
 * Sovellukseen ei voi kirjautua, vaan on ensin luotava uusi käyttäjä. Tämä tapahtuu seuraavasti:
 
   * Klikkaa yläpalkin "Käyttäjät" -linkistä. Avautuu näkymä, joka listaa kaikki käyttäjät.
@@ -24,7 +24,7 @@ Lisäkäyttäjien luominen vaatii nyt luodulla käyttäjällä kirjautumisen.
   * Paina "Submit" -nappia
 
 
-2. Tietokannassa on ainakin yksi käyttäjä
+#### 2. Tietokannassa on ainakin yksi käyttäjä
 
 * Kirjautuminen
   * Paina yläpalkin "Login" -nappia
