@@ -1,5 +1,6 @@
 # Käyttöohjeet
 
+---------
 
 ### Kirjautuminen
 
@@ -32,3 +33,14 @@ Lisäkäyttäjien luominen vaatii nyt luodulla käyttäjällä kirjautumisen.
   * Täytä olemassaolevan käyttäjän nimi ja salasana
 
   * Paina "Submit" -nappia
+
+---------
+
+
+### Uuden käyttäjän luominen
+
+Uuden käyttäjän luominen jakautuu myös kahteen skenaarioon:
+#### 1. Tietokannassa ei ole yhtään käyttäjää
+* Voit luoda käyttäjän [Kirjautuminen 1.](#kirjautuminen) mukaan
+
+#### 2. Tietokannassa on ainakin yksi käyttäjä
