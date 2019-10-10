@@ -53,3 +53,24 @@ Uuden käyttäjän luominen jakautuu myös kahteen skenaarioon:
   * Täytä tiedot ja paina "Submit"
     (huom. tällä hetkellä vain ensimmäisenä luotu käyttäjä on Admin, ja kaikki
     sen jälkeen luodut ovat "normaaleja" käyttäjiä)
+
+
+-------
+
+### Kohteiden, Tehtävien ja Sijaintien lisääminen
+
+Näiden lisääminen on mahdollista vain kirjautuneena, ja jokaisella on oma linkkinsä
+yläpalkissa: "Kohteet", "Sijainnit" yms.
+Näistä klikkaamalla pääsee listausnäkymään joka näyttää kaikki kyseiset oliot,
+ja jossa on vasemmassa yläkylmassa "Lisää uusi" -nappi, joka johtaa lomakenäkymään,
+missä uuden olion tiedot voidaan syöttää ja lähettää palvelimelle.
+
+
+----------
+
+### Yksittäisten olioiden tarkastelu ja muokkaus
+
+Navigoimalla ensin [oikeaan listausnäkymään](#kohteiden,-tehtävien-ja-sijaintien-lisääminen)
+ja sitten klikkaamalla listalta haluamansa kohteen riviä, ohjautuu käyttäjä klikkaamansa kohteen
+näkymään.
+Näkymässä on selkeät napit, jotka tarjoavat toiminnallisuuden olion muokkaamiseen, sekä poistamiseen.
