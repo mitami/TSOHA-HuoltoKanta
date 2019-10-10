@@ -10,21 +10,19 @@
     <form method="POST", action="{{ url_for('actions_modify_one', id=action.id) }}">
       <div class="form-field-item">
         <p>Nimi: </p>
-        <input
-          name="name"
-          value="{{ action.name }}"
-          required
-          maxlength=20
-          autofocus
-        >
+        {{ form.name }}
+      </div>
+      <div class="form-field-item">
+        <p>Valitse kohde:</p>
+        <select name="target">
+          {% for item in targets %}
+          <option value="{{ item.id }}">{{ item.name }}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="form-field-item">
         <p>Kuvaus: </p>
-        <textarea
-          name="desc"
-          required
-          maxlength=255
-        >{{ action.desc }}</textarea>
+        {{ form.desc }}
       </div>
       <div class="form-field-item">
         <p>Deadline: </p>

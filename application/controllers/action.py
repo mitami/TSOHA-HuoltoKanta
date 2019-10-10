@@ -6,6 +6,7 @@ from application.models.action import Action
 from application.models.target import Target
 from application.utils.constants import msg_only_admin
 
+from application.forms.action_form import ActionForm
 import datetime
 
 @app.route("/actions/")
@@ -29,28 +30,9 @@ def actions_get_one(id):
 @login_required
 def actions_new():
     targets = Target.query.all()
-    return render_template("actions/new.html", targets=targets)
 
-@app.route("/actions/", methods=["POST"])
-@login_required
-def actions_add_one():
-    executor = Executor.query.get(current_user.id)
-    name = request.form.get("name")
-    desc = request.form.get("desc")
-    due = request.form.get("due")
-    done = False
-    if due:
-        due = datetime.strptime(due, '%Y-%m-%d')
-        due = due.date()
-
-    target_id = request.form.get("target")
-    new = Action(name, desc, due, done, target_id)
-
-    #Lisätään Toimenpide Käyttäjän toimenpiteet -listaan
-    executor.actions.append(new)
-    db.session().commit()
-
-    return redirect(url_for("actions_get_one", id = new.id))
+    form = ActionForm()
+    return render_template("actions/new.html", targets=targets, form=form)
 
 @app.route("/actions/<id>/done")
 @login_required
@@ -83,30 +65,14 @@ def actions_toggle_from_list(id):
 def actions_edit(id):
     action = Action.query.get(id)
     db.session().commit()
+    targets = Target.query.all()
 
-    return render_template("actions/edit.html", action = action)
+    form = ActionForm()
 
-@app.route("/actions/<id>/update", methods=["POST"])
-@login_required
-def actions_modify_one(id):
-    name = request.form.get("name")
-    desc = request.form.get("desc")
-    due = request.form.get("due")
-
-    action = Action.query.get(id)
-
-    if name:
-        action.name = name
-    if desc:
-        action.desc = desc
-    if due:
-        due = datetime.strptime(due, '%Y-%m-%d')
-        due = due.date()
-        action.due = due
-
-    db.session().commit()
-
-    return redirect(url_for('actions_get_one', id = id))
+    return render_template("actions/edit.html",
+                            action=action,
+                            targets=targets,
+                            form=form)
 
 @app.route("/actions/<id>/delete")
 @login_required
@@ -119,3 +85,61 @@ def actions_delete_one(id):
     db.session().commit()
 
     return redirect(url_for('actions_get_all'))
+
+@app.route("/actions/<id>/update", methods=["POST"])
+@login_required
+def actions_modify_one(id):
+    name = request.form.get("name")
+    desc = request.form.get("desc")
+    due = request.form.get("due")
+    target_id = request.form.get("target")
+
+    action = Action.query.get(id)
+
+    form = ActionForm(request.form)
+
+    if not form.validate():
+        return render_template("actions/edit.html",
+                                action=action,
+                                targets=Target.query.all(),
+                                form=form)
+    
+    action.name = name
+    action.desc = desc
+    action.target_id = target_id
+    if due:
+        due = datetime.datetime.strptime(due, '%Y-%m-%d')
+        due = due.date()
+        action.due = due
+
+    db.session().commit()
+
+    return redirect(url_for('actions_get_one', id = id))
+
+@app.route("/actions/", methods=["POST"])
+@login_required
+def actions_add_one():
+    executor = Executor.query.get(current_user.id)
+    name = request.form.get("name")
+    desc = request.form.get("desc")
+    due = request.form.get("due")
+    done = False
+
+    form = ActionForm(request.form)
+    if not form.validate():
+        render_template("actions/new.html",
+                        form=form,
+                        targets=Target.query.all())
+
+    if due:
+        due = datetime.datetime.strptime(due, '%Y-%m-%d')
+        due = due.date()
+
+    target_id = request.form.get("target")
+    new = Action(name, desc, due, done, target_id)
+
+    #Lisätään Toimenpide Käyttäjän toimenpiteet -listaan
+    executor.actions.append(new)
+    db.session().commit()
+
+    return redirect(url_for("actions_get_one", id = new.id))

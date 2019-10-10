@@ -10,12 +10,7 @@
     <form method="POST", action="{{ url_for('actions_add_one') }}">
       <div class="form-field-item">
         <p>Nimi: </p>
-        <input
-          name="name"
-          required
-          maxlength=20
-          autofocus
-        >
+        {{ form.name }}
       </div>
       <div class="form-field-item">
         <p>Valitse kohde:</p>
@@ -27,11 +22,7 @@
       </div>
       <div class="form-field-item">
         <p>Kuvaus: </p>
-        <textarea
-          name="desc"
-          required
-          maxlength=255
-        ></textarea>
+        {{ form.desc }}
       </div>
       <div class="form-field-item">
         <p>Aikataulu: </p>

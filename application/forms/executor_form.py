@@ -5,14 +5,24 @@ from application.utils.constants import msg_executor_title_length, msg_executor_
 
 class ExecutorForm(FlaskForm):
     name = StringField("Nimi", [validators.InputRequired(),
-                                validators.length(min=2, max=20, message=msg_executor_name_length)])
-    title = StringField("Titteli", [validators.length(max=30, message=msg_executor_title_length)])
+                                validators.length(min=2,
+                                                  max=20,
+                                                  message=msg_executor_name_length)])
+
+    title = StringField("Titteli", [validators.length(max=30,
+                                                      message=msg_executor_title_length)])
+
     pword = PasswordField("Salasana", [validators.InputRequired(),
                                        validators.EqualTo('pwordagain',
                                                           message=msg_password_match),
-                                       validators.length(min=4, max=20, message=msg_password_length)])
+                                       validators.length(min=4,
+                                                         max=20,
+                                                         message=msg_password_length)])
+
     pwordagain = PasswordField("Salasana uudelleen", [validators.InputRequired(),
-                                                      validators.length(min=4, max=20, message=msg_password_length)])
+                                                      validators.length(min=4,
+                                                                        max=20,
+                                                                        message=msg_password_length)])
 
 
     class Meta:
