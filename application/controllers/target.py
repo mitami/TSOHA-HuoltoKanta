@@ -45,7 +45,7 @@ def targets_edit(id, messages=[]):
     target = Target.query.get(id)
     db.session().commit()
 
-    form = TargetForm()
+    form = TargetForm(obj=target)
 
     return render_template("targets/edit.html",
                             target=target,

@@ -33,7 +33,7 @@ def locations_edit(id, messages=[]):
     db.session().commit()
     return render_template("locations/edit.html",
                             location=location,
-                            form=LocationForm(),
+                            form=LocationForm(obj=location),
                             messages=messages)
 
 @app.route("/location/<id>/delete")

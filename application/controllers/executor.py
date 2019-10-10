@@ -24,12 +24,12 @@ def executors_new():
 def executors_edit(id):
     if not current_user.get_admin():
         return render_template("index.html", msg=msg_only_admin)
-    item = Executor.query.get(id)
+    executor = Executor.query.get(id)
     db.session().commit()
 
     return render_template("executors/edit.html",
-                            executor = item,
-                            form=ExecutorForm())
+                            executor = executor,
+                            form=ExecutorForm(obj=executor))
 
 @app.route("/executor/<id>")
 @login_required
