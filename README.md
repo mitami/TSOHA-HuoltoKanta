@@ -23,7 +23,7 @@ Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutet
 
 "Normaalin" -käyttäjän ei ole valmiissa sovelluksessa tarkoitus pystyä poistamaan eikä muokkaamaan tietokannassa mitään, mitä ei ole itse sinne lisännyt. Normaali käyttäjä ei myöskään pysty rekisteröimään uusia käyttäjiä, vaan ainoastaan Admin voi sen tehdä, paitsi silloin kun tietokannassa ei ole yhtään käyttäjää, voi ensimmäisen käyttäjän luoda kuka vain, ja tämä käyttäjä automaattiseti saa Admin -oikeudet. Tämän käyttäjän luomisen jälkeen täytyy siis kirjautua sillä, jos haluaa luoda lisää käyttäjiä.
 
-[Tietokantakaavio](../master/documentation/Kaaviot/TSOHA-HuoltoKanta-TietokantaKaavio-smaller.png)
+[Tietokantakaavio-v2](../master/documentation/Kaaviot/kaavio-v2-img.png)
 
 
 --------------------------
