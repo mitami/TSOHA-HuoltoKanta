@@ -14,7 +14,7 @@ test | testi
 
 ------------------------
 
-Tietokantasovellus huoltokirjanpitoa varten.
+Tietokantasovellus tehtäväkirjanpitoa varten.
 
 Tietokannan tarkoituksena on pitää kirjaa kohteille jo suoritetuista toimista, tulevista aikataulutetuista toimista, toimenpiteiden suorittajista, sekä kohteista itsestään sekä niiden sijainnista.
 
@@ -31,4 +31,6 @@ Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutet
 
 ### Linkkejä
 
+[Tarkempi käyttöohje](..master/documentation/ohje.md)
 [Käyttäjä -storyt](../master/documentation/User-storyt/Käyttäjä.md)
+
