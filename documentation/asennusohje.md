@@ -7,7 +7,7 @@
 
 * Sovellus vaatii SQLite -tietokannan toimiakseen oikein paikallisesti.
 
-  * Vaihtoehtoisesti muuttamalla tietokannan asetuksia \__init__.py -tiedostosta
+  * Vaihtoehtoisesti muuttamalla tietokannan asetuksia \_\_init__.py -tiedostosta
   sovellusta voi käyttää myös PSQL -kannan kanssa.
 
 * Asenna riippuvuudet:
