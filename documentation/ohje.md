@@ -45,3 +45,11 @@ Uuden käyttäjän luominen jakautuu myös kahteen skenaarioon:
 
 #### 2. Tietokannassa on ainakin yksi käyttäjä
 * Luodakseen lisää käyttäjiä, on [kirjauduttava](#2-tietokannassa-on-ainakin-yksi-käyttäjä) Admin -oikeudet omaavalla käyttäjätunnuksella
+
+  * Klikkaa yläpalkin "Käyttäjät" -linkkiä.
+
+  * Klikkaa "Lisää uusi"
+
+  * Täytä tiedot ja paina "Submit"
+    (huom. tällä hetkellä vain ensimmäisenä luotu käyttäjä on Admin, ja kaikki
+    sen jälkeen luodut ovat "normaaleja" käyttäjiä)
