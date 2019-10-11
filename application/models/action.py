@@ -45,7 +45,7 @@ class Action(Base):
                             "target_name": row[6],
                             "location_id": row[7],
                             "location_name": row[8],
-                            "executor_id": row[9],#})
+                            "executor_id": row[9],
                             "executor_name": row[10]})
 
         return response
