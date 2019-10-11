@@ -33,7 +33,7 @@ def determine_array_or_group():
     if os.environ.get("HEROKU"):
         return ['string_agg',
                 '::character varying',
-                ' GROUP_BY action.id']
+                ' GROUP BY action.id']
     return ['group_concat',
             '',
             '']
