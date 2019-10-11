@@ -17,18 +17,6 @@ msg_target_no_loc = "Kohteelle on annettava Sijainti!"
 msg_action_name_length = "Tehtävän nimen tulee olla <= 20 merkkiä pitkä!"
 msg_action_desc_length = "Tehtävän kuvauksen tulee olla <= 255 merkkiä pitkä! "
 
-def boolean_converter(value):
-    if os.environ.get("HEROKU"):
-        if value:
-            return "TRUE"
-        else:
-            return "FALSE"
-    else:
-        if value:
-            return 1
-        else:
-            return 0
-
 #siivoa
 def determine_array_or_group():
     if os.environ.get("HEROKU"):

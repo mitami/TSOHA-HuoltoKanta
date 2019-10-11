@@ -2,7 +2,7 @@ from application import db
 from application.models.base import Base
 from application.models.action import Action
 
-from application.utils.constants import boolean_converter
+from application.utils.helper_functions import boolean_converter
 from sqlalchemy import text
 from datetime import datetime
 
