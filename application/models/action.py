@@ -25,7 +25,7 @@ class Action(Base):
     @staticmethod
     def find_one_with_target_and_user(id):
         #Käyttäjät pitää saada listaksi. array_agg() ei toimi SQLitellä
-        stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, executor.id, executor.name"
+        stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, group_concat(executor.id), group_concat(executor.name)"
                     " FROM Action JOIN executor_action ON executor_action.action_id = action.id"
                     " JOIN Executor ON Executor.id = executor_action.executor_id"
                     " JOIN Target ON Target.id = action.target_id"
@@ -45,7 +45,7 @@ class Action(Base):
                             "target_name": row[6],
                             "location_id": row[7],
                             "location_name": row[8],
-                            "executor_id": row[9],
+                            "executor_id": row[9],#})
                             "executor_name": row[10]})
 
         return response
