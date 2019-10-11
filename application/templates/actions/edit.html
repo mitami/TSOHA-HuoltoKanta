@@ -18,7 +18,7 @@
           {% for item in executors %}
           <option
             value="{{ item.id }}"
-            {% if item.id in action.executors %} selected {% endif %}
+            {% if item.id in old_exec_ids %} selected {% endif %}
           >
             {{ item.name }}
           </option>

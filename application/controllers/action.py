@@ -78,11 +78,15 @@ def actions_edit(id):
     executors = Executor.query.all()
 
     form = ActionForm(obj=action)
+    old_exec_ids = []
+    for e in action.executors:
+        old_exec_ids.append(e.id)
 
     return render_template("actions/edit.html",
                             action=action,
                             targets=targets,
                             executors=executors,
+                            old_exec_ids=old_exec_ids,
                             form=form)
 
 @app.route("/actions/<id>/delete")
