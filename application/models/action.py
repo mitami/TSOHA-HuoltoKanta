@@ -32,7 +32,7 @@ class Action(Base):
                     JOIN Executor ON Executor.id = executor_action.executor_id
                     JOIN Target ON Target.id = action.target_id
                     JOIN Location ON Location.id = target.location_id
-                    WHERE action.id = :id""".format(array_or_group[0], array_or_group[1], array_or_group[0], array_or_group[1])
+                    WHERE action.id = :id{}""".format(array_or_group[0], array_or_group[1], array_or_group[0], array_or_group[1], array_or_group[2])
 
         stmt = text(formatted).params(id = id)
 

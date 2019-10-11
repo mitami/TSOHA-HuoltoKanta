@@ -32,6 +32,8 @@ def boolean_converter(value):
 def determine_array_or_group():
     if os.environ.get("HEROKU"):
         return ['string_agg',
-                '::character varying']
+                '::character varying',
+                ' GROUP_BY action.id']
     return ['group_concat',
+            '',
             '']
