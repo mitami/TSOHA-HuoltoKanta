@@ -75,7 +75,7 @@ ja sitten klikkaamalla listalta haluamansa kohteen riviä, ohjautuu käyttäjä 
 näkymään.
 Näkymässä on selkeät napit, jotka tarjoavat toiminnallisuuden olion muokkaamiseen, sekä poistamiseen.
 
-* Tehtävän muokkauksessa on syytä huomata, että toistaiseksi käytössä olevan HTML:n suoraan tarjoaman
+* Tehtävän muokkauksessa/luomisessa on syytä huomata, että toistaiseksi käytössä olevan HTML:n suoraan tarjoaman
 "monivalintalistan" käyttö ei ole kovin käyttäjäystävällistä.
 
   * Valitaksesi yhden käyttäjän, klikkaa jostakin käyttäjän nimesetä listassa
