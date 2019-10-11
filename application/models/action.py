@@ -3,6 +3,7 @@ from application.models.base import Base
 
 from sqlalchemy import text
 from datetime import datetime
+from application.utils.constants import determine_array_or_group
 
 class Action(Base):
     name = db.Column(db.String(255))
@@ -25,12 +26,15 @@ class Action(Base):
     @staticmethod
     def find_one_with_target_and_user(id):
         #Käyttäjät pitää saada listaksi. array_agg() ei toimi SQLitellä
-        stmt = text("SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, group_concat(executor.id), group_concat(executor.name)"
-                    " FROM Action JOIN executor_action ON executor_action.action_id = action.id"
-                    " JOIN Executor ON Executor.id = executor_action.executor_id"
-                    " JOIN Target ON Target.id = action.target_id"
-                    " JOIN Location ON Location.id = target.location_id"
-                    " WHERE action.id = :id").params(id = id)
+        array_or_group = determine_array_or_group()
+        formatted = """SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, {}(executor.id), {}(executor.name)
+                    FROM Action JOIN executor_action ON executor_action.action_id = action.id
+                    JOIN Executor ON Executor.id = executor_action.executor_id
+                    JOIN Target ON Target.id = action.target_id
+                    JOIN Location ON Location.id = target.location_id
+                    WHERE action.id = :id""".format(array_or_group, array_or_group)
+
+        stmt = text(formatted).params(id = id)
 
         res = db.engine.execute(stmt)
 

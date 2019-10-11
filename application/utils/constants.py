@@ -28,3 +28,8 @@ def boolean_converter(value):
             return 1
         else:
             return 0
+
+def determine_array_or_group():
+    if os.environ.get("HEROKU"):
+        return 'array_agg'
+    return 'group_concat'
