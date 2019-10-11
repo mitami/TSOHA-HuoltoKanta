@@ -31,5 +31,7 @@ def boolean_converter(value):
 
 def determine_array_or_group():
     if os.environ.get("HEROKU"):
-        return 'string_agg'
-    return 'group_concat'
+        return ['string_agg',
+                '::character varying']
+    return ['group_concat',
+            '']
