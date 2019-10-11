@@ -27,7 +27,7 @@ class Action(Base):
     def find_one_with_target_and_user(id):
         #Käyttäjät pitää saada listaksi. array_agg() ei toimi SQLitellä
         array_or_group = determine_array_or_group()
-        formatted = """SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, {}(executor.id), {}(executor.name)
+        formatted = """SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, {}(executor.id, ','), {}(executor.name, ',')
                     FROM Action JOIN executor_action ON executor_action.action_id = action.id
                     JOIN Executor ON Executor.id = executor_action.executor_id
                     JOIN Target ON Target.id = action.target_id
