@@ -104,6 +104,7 @@ def actions_modify_one(id):
     desc = request.form.get("desc")
     due = request.form.get("due")
     target_id = request.form.get("target")
+    executors = request.form.getlist("executors")
 
     action = Action.query.get(id)
 
@@ -122,6 +123,10 @@ def actions_modify_one(id):
         due = datetime.datetime.strptime(due, '%Y-%m-%d')
         due = due.date()
         action.due = due
+
+    if executors:
+        executors = [Executor.query.get(e) for e in executors]
+        action.executors = executors
 
     db.session().commit()
 
