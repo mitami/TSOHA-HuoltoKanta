@@ -29,6 +29,7 @@ def boolean_converter(value):
         else:
             return 0
 
+#siivoa
 def determine_array_or_group():
     if os.environ.get("HEROKU"):
         return ['string_agg',
