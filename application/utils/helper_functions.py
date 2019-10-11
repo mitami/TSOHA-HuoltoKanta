@@ -13,6 +13,7 @@ def boolean_converter(value):
             return 0
 
 #siivoa
+#SQLite ei ymmärrä string_aggia, eikä PSQL ymmärrä group_concattia
 def determine_array_or_group(*argv):
     if os.environ.get("HEROKU"):
 
