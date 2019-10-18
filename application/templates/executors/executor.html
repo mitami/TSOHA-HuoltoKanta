@@ -4,8 +4,20 @@
   <div class="p-5">
     <h3>{{ executor.name }}</h3>
     <p>{{ executor.title }}</p>
-    <a class="btn btn-warning" href="{{ url_for('executors_edit', id=executor.id) }}">Muokkaa käyttäjän tietoja</a>
-    <a class="btn btn-danger" href="{{ url_for('executors_delete_one', id=executor.id) }}">Poista käyttäjä</a>
+    {% if current_user and current_user.admin %}
+    <a
+      class="btn btn-warning"
+      href="{{ url_for('executors_edit', id=executor.id) }}"
+    >
+      Muokkaa käyttäjän tietoja
+    </a>
+    <a
+      class="btn btn-danger"
+      href="{{ url_for('executors_delete_one', id=executor.id) }}"
+    >
+      Poista käyttäjä
+    </a>
+    {% endif %}
     <div class="p-5">
       <h4>Omat tehtävät:</h4>
       <div class="p-5">
@@ -20,7 +32,11 @@
           </tr>
         {% for item in actions %}
           <tr onclick="window.location=`{{ url_for('actions_get_one', id=item.action_id) }}`">
-            <td><a href="{{ url_for('actions_get_one', id=item.action_id) }}">{{ item.action_name }}</a></td>
+            <td>
+              <a href="{{ url_for('actions_get_one', id=item.action_id) }}">
+                {{ item.action_name }}
+              </a>
+            </td>
             <td>{{ item.action_due.strftime('%d.%m.%Y') }}</td>
             <td>{{ item.action_desc }}</td>
             <td>
@@ -31,7 +47,14 @@
                 {{ 'TEHTY' if item.action_done else 'KESKEN' }}
               </a>
             </td>
-            <td><a class="btn btn-danger py-0 float-right" href="{{ url_for('actions_delete_one', id=item.action_id) }}">POISTA</a></td>
+            <td>
+              <a
+                class="btn btn-danger py-0 float-right"
+                href="{{ url_for('actions_delete_one', id=item.action_id) }}"
+              >
+                POISTA
+              </a>
+            </td>
           </tr>
         {% endfor %}
         </table>

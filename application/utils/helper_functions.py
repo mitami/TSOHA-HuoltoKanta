@@ -13,11 +13,20 @@ def boolean_converter(value):
             return 0
 
 #siivoa
+#SQLite ei ymmärrä string_aggia, eikä PSQL ymmärrä group_concattia
 def determine_array_or_group(*argv):
     if os.environ.get("HEROKU"):
+
+        groupby = ' GROUP BY'
+        #Lisätään annetut sarakkeet GROUP BY lauseeseen
+        for arg in argv:
+            groupby = groupby + " " + arg + ","
+        groupby = groupby[:-1]
+
         return ['string_agg',
                 '::character varying',
-                ' GROUP BY action.id, target.id, location.id']
+                groupby]
+
     return ['group_concat',
             '',
             '']

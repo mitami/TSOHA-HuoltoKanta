@@ -3,7 +3,7 @@ from application.models.base import Base
 
 from sqlalchemy import text
 from datetime import datetime
-from application.utils.constants import determine_array_or_group
+from application.utils.helper_functions import determine_array_or_group
 
 class Action(Base):
     name = db.Column(db.String(255))
@@ -27,7 +27,10 @@ class Action(Base):
     def find_one_with_target_and_user(id):
         #Käyttäjät pitää saada listaksi. array_agg() ei toimi SQLitellä
         #siivoa
-        array_or_group = determine_array_or_group()
+        #Koska SQLite ja PSQL erot, täytyy kutsua funktiota, joka palauttaa sopivat
+        #SQL keywordit kummassakin tapauksessa.
+        array_or_group = determine_array_or_group('action.id', 'target.id', 'location.id')
+
         formatted = """SELECT action.id, action.name, action.desc, action.done, action.due, target.id, target.name, location.id, location.name, {}(executor.id{}, ','), {}(executor.name{}, ',')
                     FROM Action JOIN executor_action ON executor_action.action_id = action.id
                     JOIN Executor ON Executor.id = executor_action.executor_id

@@ -2,7 +2,7 @@ from application import db
 from application.models.base import Base
 from application.models.action import Action
 
-from application.utils.constants import boolean_converter
+from application.utils.helper_functions import boolean_converter
 from sqlalchemy import text
 from datetime import datetime
 
@@ -34,7 +34,8 @@ class Executor(Base):
                     " FROM executor_action"
                     " LEFT JOIN Action"
                     " ON Action.id = executor_action.action_id"
-                    " WHERE executor_action.executor_id = :id").params(id = id)
+                    " WHERE executor_action.executor_id = :id"
+                    " ORDER BY action.due").params(id = id)
         
         res = db.engine.execute(stmt)
 
