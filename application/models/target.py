@@ -55,7 +55,8 @@ class Target(Base):
     def find_related_actions(id):
         stmt = text("SELECT action.id, action.name, action.desc, action.due, action.done"
                     " FROM Action"
-                    " WHERE Action.target_id = :id").params(id = id)
+                    " WHERE Action.target_id = :id"
+                    " ORDER BY action.due").params(id = id)
 
         res = db.engine.execute(stmt)
 

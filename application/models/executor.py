@@ -34,7 +34,8 @@ class Executor(Base):
                     " FROM executor_action"
                     " LEFT JOIN Action"
                     " ON Action.id = executor_action.action_id"
-                    " WHERE executor_action.executor_id = :id").params(id = id)
+                    " WHERE executor_action.executor_id = :id"
+                    " ORDER BY action.due").params(id = id)
         
         res = db.engine.execute(stmt)
 
