@@ -37,3 +37,5 @@ Admin -oikeuksilla käyttäjä pääsee käsiksi kaikkeen sovelluksessa toteutet
 
 [Käyttäjä -storyt](../master/documentation/User-storyt/Käyttäjä.md)
 
+[Create Table -kyselyt](../master/documentation/create-table.md)
+
