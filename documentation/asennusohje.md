@@ -15,7 +15,7 @@
   `pip3 install -r requirements.txt`
   
   HUOM. WINDOWS:
-   * Jos psycopg -paketin asennus ei onnistu, lisää PostgreSQL Windowsin PATH muuttujaan
+   * Jos psycopg -paketin asennus ei onnistu, lisää PostgreSQL ...\bin Windowsin PATH muuttujaan
    * 32-bit Python ei välttämättä toimi, asenna 64-bit
 
 * Käynnistä sovellus:
