@@ -13,6 +13,8 @@
 * Asenna riippuvuudet:
 
   `pip3 install -r requirements.txt`
+  
+  HUOM. WINDOWS: Jos psycopg -paketin asennus ei onnistu, lisää PostgreSQL Windowsin PATH muuttujaan
 
 * Käynnistä sovellus:
 
