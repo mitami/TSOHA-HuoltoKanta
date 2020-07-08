@@ -5,8 +5,8 @@
   <h2>Toimenpiteet</h2>
   <a class="btn btn-success" href="{{ url_for('actions_new') }}">Lisää uusi</a>
   <div class="p-5">
-    <a class="btn btn-primary" href="https://www.google.com">Omat Tehtävät</a>
-    <a class="btn btn-primary" href="https://www.google.com">Kaikki Tehtävät</a>
+    <a class="btn btn-primary" href="{{ url_for('actions_get_by_executor', id=current_user.id) }}">Omat Tehtävät</a>
+    <a class="btn btn-primary" href="{{ url_for('actions_get_all') }}">Kaikki Tehtävät</a>
     <table class="table">
         <tr>
           <th>Nimi</th>

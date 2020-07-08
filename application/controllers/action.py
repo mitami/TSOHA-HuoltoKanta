@@ -16,6 +16,17 @@ def actions_get_all():
 
     return render_template("actions/actions.html", actions = actions)
 
+@app.route("/executor/<id>/actions")
+@login_required
+def actions_get_by_executor(id):
+    actions = Executor.get_all_executors_tasks(id)
+    db.session().commit()
+
+    print('actions')
+    print(actions)
+
+    return render_template("actions/actions.html", actions = actions)
+
 @app.route("/action/<id>")
 @login_required
 def actions_get_one(id):
